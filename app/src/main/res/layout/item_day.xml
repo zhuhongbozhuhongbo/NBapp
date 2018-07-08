@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:stretchColumns="*"
+    android:layout_width="match_parent"
+    android:layout_height="30dp">
+    <TableRow>
+        <TextView
+            android:text="今日开工时间"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:id="@+id/item_day_0"
+            android:layout_width="72dp"
+            android:layout_height="33dp" />
+        <TextView
+            android:textSize="14dp"
+            android:gravity="center"
+            android:id="@+id/item_day_1"
+            android:layout_width="60dp"
+            android:layout_height="33dp" />
+    </TableRow>
+</TableLayout>

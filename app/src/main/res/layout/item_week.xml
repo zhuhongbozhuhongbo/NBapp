@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--统计流量页面的recyclerview的item-->
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:stretchColumns="*"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="30dp">
+    <TableRow>
+        <TextView
+            android:textSize="14dp"
+            android:gravity="center"
+            android:id="@+id/item_week_0"
+            android:layout_width="50dp"
+            android:layout_height="33dp" />
+        <TextView
+            android:textSize="14dp"
+            android:gravity="center"
+            android:id="@+id/item_week_1"
+            android:layout_width="50dp"
+            android:layout_height="33dp" />
+        <TextView
+            android:textSize="14dp"
+            android:gravity="center"
+            android:id="@+id/item_week_2"
+            android:layout_width="50dp"
+            android:layout_height="33dp" />
+        <TextView
+            android:textSize="14dp"
+            android:gravity="center"
+            android:id="@+id/item_week_3"
+            android:layout_width="50dp"
+            android:layout_height="33dp" />
+    </TableRow>
+
+</TableLayout>

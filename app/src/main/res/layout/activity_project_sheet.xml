@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25.0sp"
+        android:layout_marginRight="25.0sp"
+        android:layout_marginTop="25.0sp"
+        android:stretchColumns="1" >
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff000000">
+            <TextView
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginTop="1.0dip"
+                android:layout_weight="3"
+                android:background="#ffffffff"
+                android:gravity="center"
+                android:padding="6.0dip"
+                android:text="项目名称"
+                android:textColor="#ff000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/device_content_0"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginTop="1.0dip"
+                android:layout_marginRight="1.0dip"
+                android:layout_weight="8"
+                android:text="陈翔路站工程"
+                android:background="#ffffffff"
+                android:gravity="center"
+                android:textColor="#ff000000" />
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000" >
+
+            <TextView
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_weight="3"
+                android:background="#ffffffff"
+                android:gravity="center"
+                android:padding="6.0dip"
+                android:textColor="#ff000000"
+                android:textStyle="bold"
+                android:text="项目地区"/>
+
+            <TextView
+                android:id="@+id/device_content_1"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1.0dip"
+                android:layout_weight="8"
+                android:background="#ffffffff"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:textColor="#ff000000"
+                android:text="Ztnj-01-001"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000" >
+
+            <TextView
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_weight="3"
+                android:background="#ffffffff"
+                android:gravity="center"
+                android:padding="6.0dip"
+                android:textColor="#ff000000"
+                android:textStyle="bold"
+                android:text="相关设备"/>
+
+            <TextView
+                android:id="@+id/device_content_2"
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_weight="4"
+                android:background="#ffffffff"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:textColor="#ff000000"
+                android:text="Ztnj-01-001"/>
+
+            <Button
+                android:id="@+id/device_button_0"
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginRight="1.0dip"
+                android:layout_weight="4"
+                android:background="#ffffffff"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:textColor="#ff000000"
+                android:text="设备详情"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000" >
+
+            <TextView
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_weight="3"
+                android:background="#ffffffff"
+                android:gravity="center"
+                android:padding="6.0dip"
+                android:textColor="#ff000000"
+                android:textStyle="bold"
+                android:text="项目内容"/>
+
+            <TextView
+                android:id="@+id/device_content_8"
+                android:layout_width="0.0dip"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1.0dip"
+                android:layout_weight="8"
+                android:background="#ffffffff"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:textColor="#ff000000"
+                android:text="备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注"/>
+
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

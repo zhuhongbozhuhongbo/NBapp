@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">中铁物联网</string>
+
+    <string name="select_btn_0">泥浆处理器</string>
+    <string name="select_btn_1">吊车</string>
+    <string name="select_btn_2">一代机</string>
+    <string name="select_btn_3">二代机</string>
+    <string name="your_string"><u>doubisongzhiyi</u></string>
+    <string name="infowindow_navigation">导航</string>
+    <string name="infowindow_call">电话</string>
+    <string name="agent_addr">地址：%1$s</string>
+
+    <string name="notifyTitle">提示</string>
+    <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+    <string name="setting">设置</string>
+    <string name="cancel">取消</string>
+
+
+    <string name="forget"><u>忘记密码</u></string>
+    <string name="join"><u>"注册"</u></string>
+    <string name="account">请输入账户</string>
+    <string name="password">请输入密码</string>
+    <string name="about_us">关于我们</string>
+    <string name="contact_us">联系客服</string>
+    <string name="prj_name">项目名称</string>
+    <string name="login">登录</string>
+    <string name="input">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+</resources>

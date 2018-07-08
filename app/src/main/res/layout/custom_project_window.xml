@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="112dp"
+    android:layout_height="58dp"
+    android:background="@color/colorLightGreyMap"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/project_window_text"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:textSize="13dp"
+        android:textColor="@color/colorBlackMap"
+        android:layout_width="66dp"
+        android:layout_height="17dp" />
+ <!--   android:text="陈翔路站工程"代码中动态设置内容-->
+    <Button
+        android:text="详情"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorLightGreyMap"
+        android:id="@+id/project_window_button0"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="96dp"
+        android:layout_height="24dp"
+        android:background="@drawable/details_button"
+        />
+    <!-- android:background="@drawable/shapecircle"-->
+</LinearLayout>

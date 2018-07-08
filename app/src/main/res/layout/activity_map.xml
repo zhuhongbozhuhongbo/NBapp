@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:gravity="center"
+        android:background="@color/colorPrimaryDarkMap"
+
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:src="@drawable/logo"
+            android:layout_width="29dp"
+            android:layout_height="29dp" />
+        <TextView
+            android:text="中铁物联网"
+            android:textColor="@color/colorLightGreyMap"
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        >
+        <LinearLayout
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/tab_checked"
+            android:id="@+id/home_page_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:focusable="false"
+                android:clickable="false"
+                android:src="@drawable/tab_project_checked"
+                android:layout_gravity="center_vertical"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:focusable="false"
+                android:clickable="false"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorLightGreyMap"
+                android:textSize="17dp"
+                android:gravity="center"
+                android:text="项目管理"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:background="@drawable/tab_unchecked"
+            android:id="@+id/home_page_5"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:focusable="false"
+                android:clickable="false"
+                android:src="@drawable/tab_device_checked"
+                android:layout_gravity="center_vertical"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:focusable="false"
+                android:clickable="false"
+                android:layout_gravity="center_vertical"
+                android:textSize="17dp"
+                android:textColor="@color/colorLightGreyMap"
+                android:gravity="center"
+                android:text="设备管理"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <!--        加android:focusable="false"
+                    android:clickable="false"是为了禁用其响应点击-->
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_weight="17"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <com.amap.api.maps.MapView
+            android:id="@+id/home_page_mapview_0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            />
+        <!--    android:layout_weight="10"-->
+
+        <LinearLayout
+            android:background="@drawable/shape_cart"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="11dp"
+            android:layout_marginLeft="11dp"
+            android:id="@+id/jdselector"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="14dp"
+                android:textColor="@color/black_textMap"
+                android:text="手动选择项目查询地区"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@drawable/shape_cart"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="11dp"
+            android:layout_marginLeft="11dp"
+            android:id="@+id/select_projectdevice"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" >
+            <TextView
+                android:id="@+id/search_tv"
+                android:gravity="center"
+                android:text="请输入关键字进行搜索"
+                android:textSize="14dp"
+                android:textColor="@color/black_textMap"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </TextView>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorLightGreyMap"/>
+
+    <!--   需要注意的是TableRow不需要设置宽度layout_width和高度layoutJieight，
+       其宽度一定是match_parent，即自动填充父容器，高度一定为wrap_content，即根据内容改变高度。-->
+    <TableLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:stretchColumns="*">
+        <TableRow
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            >
+            <ImageView
+                android:id="@+id/home_page_0"
+                android:src="@drawable/tab_home"
+                android:layout_width="35dp"
+                android:layout_height="21dp"/>
+
+            <ImageView
+                android:id="@+id/home_page_1"
+                android:src="@drawable/tab_news"
+                android:layout_width="35dp"
+                android:layout_height="21dp"/>
+
+            <ImageView
+                android:id="@+id/home_page_2"
+                android:src="@drawable/tab_maintain"
+                android:layout_width="35dp"
+                android:layout_height="21dp"/>
+
+            <ImageView
+                android:id="@+id/home_page_3"
+                android:src="@drawable/tab_account"
+                android:layout_width="35dp"
+                android:layout_height="21dp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+            <TextView
+                android:textSize="10dp"
+                android:layout_width="35dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:text="首页"/>
+            <TextView
+                android:textSize="10dp"
+                android:layout_width="35dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:text="行业资讯"/>
+            <TextView
+                android:textSize="10dp"
+                android:layout_width="35dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:text="设备维护"/>
+            <TextView
+                android:textSize="10dp"
+                android:layout_width="35dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:text="我的账户"/>
+
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>

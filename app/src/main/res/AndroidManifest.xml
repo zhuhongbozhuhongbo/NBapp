@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.map3dtest">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name=".base.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="377dc956e92e211cb293a4b2ce09fccc" />
+
+        <activity android:name=".login.LoginActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".map.MapActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".map.SmoothMoveActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".tables.LocationSelectActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".tables.DeviceTypeSelectActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.example.nbiot_5.ACTION_START" />
+
+                <category android:name="com.example.nbiot_5.DEVICE_FIND_CATEGORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".tables.ProjectListActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".search.SearchPageActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".tables.DeviceSheetActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.example.nbiot_5.ACTION_START" />
+
+                <category android:name="com.example.nbiot_5.DEVICE_DETAILS_CATEGORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".tables.ProjectSheetActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.example.nbiot_5.ACTION_START" />
+
+                <category android:name="com.example.nbiot_5.PROJECT_CATEGORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".charts.ChartActivitySec"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.example.nbiot_5.ACTION_START" />
+
+                <category android:name="com.example.nbiot_5.DEVICE_STATISTIC_CATEGORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".functest.FuncActivitySec">
+
+        </activity>
+    </application>
+
+</manifest>

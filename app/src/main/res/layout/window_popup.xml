@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="374dp"
+    android:layout_height="209dp"
+    android:scrollbars="none"
+    android:background="#F4F4F4"
+    android:orientation="vertical"
+    android:showDividers="middle">
+    <RelativeLayout
+        android:id="@+id/abovePopRl"
+        android:orientation="horizontal"
+        android:layout_width="374dp"
+        android:layout_height="55dp">
+        <TextView
+            android:gravity="center"
+            android:textSize="13dp"
+            android:text="请选择查询地区"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:background="@color/colorPrimaryDarkMap"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="19dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="17dp"
+            android:layout_height="17dp" />
+    </RelativeLayout>
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="295dp"
+        android:layout_height="154dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="295dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/abovePopText1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="北京"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/abovePopText2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="天津"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/abovePopText3"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="河北省"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/abovePopText4"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="山西省"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/abovePopText5"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="山东省"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/abovePopText6"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="山东省"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/abovePopText7"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="山东省"
+                android:textSize="14dp"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
