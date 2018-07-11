@@ -50,12 +50,10 @@ import mlxy.utils.T;
 
 public class MapActivity extends AppCompatActivity implements AMap.OnMapClickListener, AMap.OnMarkerClickListener, View.OnClickListener, OnAddressSelectedListener{
 
-    private Marker oldMarker;
-    //AMap
+
     private MapView mapView = null;
     private AMap aMap;
-    //private MarkerOptions markerOption;
-    //private Marker marker;
+
     private InfoWinAdapter adapter;
     private ArrayList currentEntityList = new ArrayList<MarkerManager>();
 
