@@ -102,52 +102,12 @@ public class FuncActivitySec extends AppCompatActivity implements View.OnClickLi
                 }
 
 
-                String data[] = body.getP0().trim().split("#");
+  /*              String data[] = body.getP0().trim().split("#");
                 Log.d("haha", "size: " + data.length + "内容为：" + result);
                 Log.d("haha", "data部分内容为：" + "0 " + data[0] + " 1 " + data[1] + " 2 " + data[2]
                         + " 3 " + data[3] + " 4 " + data[4] + " 5 " + data[5] + " 6 " + data[6] + " 7 " + data[7] + " 8 " + data[8] + " 9 " + data[9]);
 
-
-
-
-                if (data.length != 0) {//若data.length为1，代表只有一项，即服务器返回值为空
-
-                    if (body.getField().equals("containingFuel"))//
-                    {
-                        Log.d("haha", "chart");
-                        float buf_data;
-                        values = new ArrayList<>();
-                        int i = 1;
-                        //此处i从1开始，是因为如果数据为 #0.0#0.0，则data[0]为空，（# 前也会解析）
-                        for (i = 1; i < data.length; i++) {
-                            buf_data = Float.parseFloat(data[i]);
-                            values.add(new Entry(i - 1, buf_data));
-                        }
-
-                        Log.d("haha", "aaaaaaaaaaaaaa" + data.length);
-                        //设置一页最大显示个数为6，超出部分就滑动
-
-
-
-                        LineDataSet dataSet = new LineDataSet(values, "Label");
-                        LineData lineData = new LineData(dataSet);
-                        mTestChart.setData(lineData);
-                        mTestChart.invalidate();//refresh
-                        //values.clear();
-                    }else if(body.getField().equals("GPSInformation")){
-                        byte[] haha1 = Base64.decode(data[1], Base64.DEFAULT);
-
-                        //byte[] haha1 = JavaBase64Decode.decode(data[1]);
-
-                        //注：#开头，故data[0]为空
-                        Log.d("haha", "data0:  " + data[1] + " datasiz" + data.length);
-                        Log.d("haha", "haha1:  " + haha1[0] + " hahasiz" + haha1.length);
-                        Log.d("haha", "after"+ ByteCompile.byte2Int(haha1[0], haha1[1], haha1[2], haha1[3]
-                        )*90.0/Integer.MAX_VALUE);
-                        Log.d("haha", "after"+ByteCompile.byte2Int(haha1[4], haha1[5], haha1[6], haha1[7]
-                        )*180.0/Integer.MAX_VALUE);
-                    }
-                }
+*/
             }
 
 

@@ -189,7 +189,13 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
         T.showShort(this, s);
 
 
-        if(GlobalStateManager.projectdevice == true) {
+        LatLng updateLatLng = Matching.latLngConvert(s);
+        GlobalStateManager.currentLatlng = updateLatLng;
+        CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(updateLatLng, 8, 30, 0));
+        aMap.moveCamera(mCameraUpdate);
+        clearMarkers();
+        addLandMarkerToMap(updateLatLng, s);
+      /*  if(GlobalStateManager.projectdevice == true) {
             //参数依次是：视角调整区域的中心点坐标、希望调整到的缩放级别、俯仰角0°~45°（垂直与地图时为0）、偏航角 0~360° (正北方为0)  数小视野范围大
             LatLng updateLatLng = Matching.latLngConvert(s);
             GlobalStateManager.currentLatlng = updateLatLng;
@@ -199,13 +205,13 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
             addLandMarkerToMap(updateLatLng, s);
         }else if(GlobalStateManager.projectdevice == false){
             queryDevice(s);
-          /*  LatLng updateLatLng = Matching.latLngConvert(s);
+          *//*  LatLng updateLatLng = Matching.latLngConvert(s);
             GlobalStateManager.currentLatlng = updateLatLng;
             CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(updateLatLng, 8, 30, 0));
             aMap.moveCamera(mCameraUpdate);
             clearMarkers();
-            addMarkerToMap(updateLatLng, s);*/
-        }
+            addMarkerToMap(updateLatLng, s);*//*
+        }*/
 
 
     }
