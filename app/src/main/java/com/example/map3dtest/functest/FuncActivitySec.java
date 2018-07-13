@@ -83,9 +83,9 @@ public class FuncActivitySec extends AppCompatActivity implements View.OnClickLi
             public void onDataReceive(int mt, ChartDatas body) {
                 Log.e("haha", "FuncActivity收到:");
                 String result = "querymode:" + body.getQuerymode() + " type:" + body.getType() + " field:" +
-                        body.getField() + " p0:" + body.getP0() + " " + " p1:" + body.getP1() + " " + " p2:" + body.getP2() + " " + " p3:" + body.getP3() + " "
+                        body.getField() + " p1:" + body.getP1() + " " + " p2:" + body.getP2() + " " + " p3:" + body.getP3() + " "
                         + " p4:" + body.getP4() + " " + " p5:" + body.getP5() + " " + " p6:" + body.getP6() + " " + " p7:" + body.getP7() + " " + " p8:" + body.getP8() + " "
-                        + " p9:" + body.getP9() + " " + " p10:" + body.getP10();
+                        + " p9:" + body.getP9() + " " + " p10:" + body.getP10() + " p0:" + body.getP0() + " " ;
 
                 if(body.getType().equals("DDI")){
 
