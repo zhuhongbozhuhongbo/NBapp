@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nbapp">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -18,7 +17,8 @@
             android:name="com.amap.api.v2.apikey"
             android:value="377dc956e92e211cb293a4b2ce09fccc" />
 
-        <activity android:name="com.example.map3dtest.login.LoginActivity"
+        <activity
+            android:name="com.example.map3dtest.login.LoginActivity"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -27,20 +27,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.map3dtest.main.MapProjectActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.example.map3dtest.main.MapDeviceActivity"/>
+        <activity android:name="com.example.map3dtest.main.DeviceMaintainActivity" />
+        <activity android:name="com.example.map3dtest.main.AccountManageActivity"/>
 
-        <activity android:name="com.example.map3dtest.map.MapActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name="com.example.map3dtest.MainActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.example.map3dtest.map.SmoothMoveActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.example.map3dtest.tables.LocationSelectActivity"
-            android:screenOrientation="portrait"/>
-
+        <activity
+            android:name="com.example.map3dtest.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.map3dtest.main.SmoothMoveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.map3dtest.tables.LocationSelectActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.map3dtest.tables.DeviceTypeSelectActivity"
             android:screenOrientation="portrait">
@@ -51,13 +53,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.example.map3dtest.tables.ProjectListActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.example.map3dtest.search.SearchPageActivity"
-            android:screenOrientation="portrait"/>
-
+        <activity
+            android:name="com.example.map3dtest.tables.ProjectListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.map3dtest.search.SearchPageActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.map3dtest.tables.DeviceSheetActivity"
             android:noHistory="true"
@@ -69,7 +70,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.example.map3dtest.tables.ProjectSheetActivity"
             android:screenOrientation="portrait">
@@ -80,8 +80,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.example.map3dtest.charts.ChartActivitySec"
+        <activity
+            android:name="com.example.map3dtest.charts.ChartActivitySec"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.example.nbiot_5.ACTION_START" />
@@ -90,10 +90,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.map3dtest.functest.FuncActivitySec" />
 
-        <activity android:name="com.example.map3dtest.functest.FuncActivitySec">
-
-        </activity>
     </application>
 
 </manifest>

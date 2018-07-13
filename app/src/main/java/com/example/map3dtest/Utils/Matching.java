@@ -4,16 +4,7 @@ package com.example.map3dtest.Utils;
  * Created by 朱宏博 on 2018/4/2.
  */
 
-import android.util.Log;
-
 import com.amap.api.maps.model.LatLng;
-import com.amap.api.maps.model.Marker;
-import com.example.map3dtest.map.MarkerEntity;
-import com.example.map3dtest.nettyclient.Constant;
-import com.example.map3dtest.nettyclient.NettyClient;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * P代表工程物联网下位机，D代表设备物联网下位机，两种类型下位机ID分别独立从0开始递增

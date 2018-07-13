@@ -24,67 +24,6 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="45dp"
-        android:layout_width="match_parent"
-        >
-        <LinearLayout
-            android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:background="@drawable/tab_checked"
-            android:id="@+id/home_page_4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:focusable="false"
-                android:clickable="false"
-                android:src="@drawable/tab_project_checked"
-                android:layout_gravity="center_vertical"
-                android:layout_width="25dp"
-                android:layout_height="25dp" />
-            <TextView
-                android:focusable="false"
-                android:clickable="false"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/colorLightGreyMap"
-                android:textSize="17dp"
-                android:gravity="center"
-                android:text="项目管理"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:background="@drawable/tab_unchecked"
-            android:id="@+id/home_page_5"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:focusable="false"
-                android:clickable="false"
-                android:src="@drawable/tab_device_checked"
-                android:layout_gravity="center_vertical"
-                android:layout_width="25dp"
-                android:layout_height="25dp" />
-            <TextView
-                android:focusable="false"
-                android:clickable="false"
-                android:layout_gravity="center_vertical"
-                android:textSize="17dp"
-                android:textColor="@color/colorLightGreyMap"
-                android:gravity="center"
-                android:text="设备管理"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <!--        加android:focusable="false"
-                    android:clickable="false"是为了禁用其响应点击-->
-        </LinearLayout>
-    </LinearLayout>
 
     <RelativeLayout
         android:orientation="vertical"
@@ -119,7 +58,7 @@
                 android:gravity="center"
                 android:textSize="14dp"
                 android:textColor="@color/black_textMap"
-                android:text="手动选择项目查询地区"/>
+                android:text="快速导航"/>
         </LinearLayout>
 
         <LinearLayout
@@ -197,13 +136,13 @@
                 android:layout_width="35dp"
                 android:layout_height="14dp"
                 android:gravity="center"
-                android:text="首页"/>
+                android:text="项目管理"/>
             <TextView
                 android:textSize="10dp"
                 android:layout_width="35dp"
                 android:layout_height="14dp"
                 android:gravity="center"
-                android:text="行业资讯"/>
+                android:text="设备管理"/>
             <TextView
                 android:textSize="10dp"
                 android:layout_width="35dp"

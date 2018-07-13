@@ -18,7 +18,7 @@ import com.example.map3dtest.Utils.CustomAlertDialogs;
 import com.example.map3dtest.Utils.Position2ID;
 import com.example.map3dtest.charts.ChartActivitySec;
 import com.example.map3dtest.dom4j.ChartDatas;
-import com.example.map3dtest.map.SmoothMoveActivity;
+import com.example.map3dtest.main.SmoothMoveActivity;
 import com.example.map3dtest.nettyclient.Constant;
 import com.example.map3dtest.nettyclient.INettyClient;
 import com.example.map3dtest.nettyclient.NettyClient;

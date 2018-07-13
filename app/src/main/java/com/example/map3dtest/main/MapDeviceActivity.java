@@ -1,4 +1,5 @@
-package com.example.map3dtest.map;
+package com.example.map3dtest.main;
+
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,7 +35,6 @@ import com.example.map3dtest.nettyclient.Constant;
 import com.example.map3dtest.nettyclient.INettyClient;
 import com.example.map3dtest.nettyclient.NettyClient;
 import com.example.map3dtest.search.SearchPageActivity;
-import com.example.map3dtest.tables.DeviceTypeSelectActivity;
 import com.example.map3dtest.tables.LocationSelectActivity;
 
 
@@ -48,7 +49,7 @@ import chihane.jdaddressselector.model.Province;
 import chihane.jdaddressselector.model.Street;
 import mlxy.utils.T;
 
-public class MapActivity extends AppCompatActivity implements AMap.OnMapClickListener, AMap.OnMarkerClickListener, View.OnClickListener, OnAddressSelectedListener{
+public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapClickListener, AMap.OnMarkerClickListener, View.OnClickListener, OnAddressSelectedListener{
 
 
     private MapView mapView = null;
@@ -62,10 +63,13 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
 
     private LinearLayout jdSelect;
     private LinearLayout mselect_projectdevice;
-    private LinearLayout mhome_page_4;
-    private LinearLayout mhome_page_5;
+
     private TextView msearch_tv;
     private int counter = 0;
+    private ImageView Ighome_page_0;
+    private ImageView Ighome_page_1;
+    private ImageView Ighome_page_2;
+    private ImageView Ighome_page_3;
 
     private Handler mHandler = new Handler();
 
@@ -73,7 +77,7 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_project_map);
 
         mapView = (MapView)findViewById(R.id.home_page_mapview_0);
         mapView.onCreate(savedInstanceState);
@@ -91,7 +95,7 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
                     String data[] = body.getP0().trim().split("#");
 
                     if(data.length != 0){
-                        Log.d("haha", "MapActivity:" + " data0" + data[0] + "  data1" + data[1] + " counter" + counter);
+                        Log.d("haha", "MapProjectActivity:" + " data0" + data[0] + "  data1" + data[1] + " counter" + counter);
 
 
                         //这段代码后期需要封装，拟定采用内部类
@@ -100,23 +104,23 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
                         LatLng resultLatLng = new LatLng(ByteCompile.byte2Int(mLatLng[0], mLatLng[1], mLatLng[2], mLatLng[3]
                         ) * 90.0 / Integer.MAX_VALUE, ByteCompile.byte2Int(mLatLng[4], mLatLng[5], mLatLng[6], mLatLng[7]
                         ) * 180.0 / Integer.MAX_VALUE);
-                        Log.d("haha", "MapActivity" + resultLatLng);
+                        Log.d("haha", "MapProjectActivity" + resultLatLng);
                         String title = "";
                         if (counter == 1) {
                             //4号
                             title = "豫C 83576";
-                            Log.d("haha", "MapActivity" + title);
+                            Log.d("haha", "MapProjectActivity" + title);
 
                         } else if (counter == 2) {
                             //5
 
                             title = "皖K M1863";
-                            Log.d("haha", "MapActivity" + title);
+                            Log.d("haha", "MapProjectActivity" + title);
                         } else if (counter == 3) {
                             //6
 
                             title = "鄂C 9C219";
-                            Log.d("haha", "MapActivity" + title);
+                            Log.d("haha", "MapProjectActivity" + title);
                             counter = 0;
                         }
 
@@ -137,36 +141,32 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
     public void onClick(View v){
         switch (v.getId()){
             case R.id.jdselector:
-                BottomDialog dialog = new BottomDialog(MapActivity.this);
-                dialog.setOnAddressSelectedListener(MapActivity.this);
+                BottomDialog dialog = new BottomDialog(MapDeviceActivity.this);
+                dialog.setOnAddressSelectedListener(MapDeviceActivity.this);
                 dialog.show();
                 break;
 
             case R.id.select_projectdevice:
                 if(GlobalStateManager.projectdevice == true){//此时主页为“项目管理”
-                    Intent intent = new Intent(MapActivity.this, LocationSelectActivity.class);
+                    Intent intent = new Intent(MapDeviceActivity.this, LocationSelectActivity.class);
                     startActivity(intent);
                 }else if(GlobalStateManager.projectdevice == false){//此时主页为“设备管理
-                    Intent intent = new Intent(MapActivity.this, SearchPageActivity.class);
+                    Intent intent = new Intent(MapDeviceActivity.this, SearchPageActivity.class);
                     startActivity(intent);
                 }
                 break;
 
-            case R.id.home_page_4:
-                mhome_page_5.setBackground(getResources().getDrawable(R.drawable.tab_unchecked));
-                mhome_page_4.setBackground(getResources().getDrawable(R.drawable.tab_checked));
-                msearch_tv.setText("请选择项目地区");
-                GlobalStateManager.projectdevice = true;//true代表project
-                clearMarkers();
-                break;
 
-            case R.id.home_page_5:
-                mhome_page_5.setBackground(getResources().getDrawable(R.drawable.tab_checked));
-                mhome_page_4.setBackground(getResources().getDrawable(R.drawable.tab_unchecked));
-                msearch_tv.setText("请输入关键字进行搜索");
-                GlobalStateManager.projectdevice = false;//false代表project
-                clearMarkers();
-                break;
+            case R.id.home_page_0:
+
+            case R.id.home_page_1:
+
+            case R.id.home_page_2:
+
+            case R.id.home_page_3:
+
+
+
         }
 
     }
@@ -237,11 +237,11 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
             NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field><type>DDI</type>" +
                     "<querymode>findLatest</querymode><p0>4</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
         }else if(province.equals("辽宁")){
-        Log.d("haha", "liaoning开始查询");
-        //查询项目部信息
-        NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DDI</type>" +
-                "<querymode>findByDate</querymode><p0>empty</p0><p1>2018-7-7</p1><p2>2018-7-7</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
-    }
+            Log.d("haha", "liaoning开始查询");
+            //查询项目部信息
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DDI</type>" +
+                    "<querymode>findByDate</querymode><p0>empty</p0><p1>2018-7-7</p1><p2>2018-7-7</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
+        }
     }
 
     //maker的点击事件
@@ -271,11 +271,11 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
             //点击地图上没marker 的地方，隐藏inforwindow
             hideInfoWindow();
         }*/
-      hideInfoWindow();
+        hideInfoWindow();
     }
 
     protected void dialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MapActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MapDeviceActivity.this);
         builder.setMessage("确定要退出吗?");
         builder.setTitle("提示");
         builder.setPositiveButton("确认",
@@ -283,7 +283,7 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        MapActivity.this.finish();
+                        MapDeviceActivity.this.finish();
                     }
                 });
         builder.setNegativeButton("取消",
@@ -317,10 +317,17 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
         jdSelect.setOnClickListener(this);
         mselect_projectdevice = (LinearLayout)findViewById(R.id.select_projectdevice);
         mselect_projectdevice.setOnClickListener(this);
-        mhome_page_4 = (LinearLayout)findViewById(R.id.home_page_4);
-        mhome_page_5 = (LinearLayout)findViewById(R.id.home_page_5);
-        mhome_page_4.setOnClickListener(this);
-        mhome_page_5.setOnClickListener(this);
+
+        Ighome_page_0 = (ImageView)findViewById(R.id.home_page_0);
+        Ighome_page_1 = (ImageView)findViewById(R.id.home_page_1);
+        Ighome_page_2 = (ImageView)findViewById(R.id.home_page_2);
+        Ighome_page_3 = (ImageView)findViewById(R.id.home_page_3);
+
+        Ighome_page_0.setOnClickListener(this);
+        Ighome_page_1.setOnClickListener(this);
+        Ighome_page_2.setOnClickListener(this);
+        Ighome_page_3.setOnClickListener(this);
+
         msearch_tv.setText("请选择项目地区");
 
     }
@@ -352,7 +359,7 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
                 .title(title)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_dev4))
         );
-       // marker.showInfoWindow();
+        // marker.showInfoWindow();
 
         currentEntityList.add(new MarkerManager(latLng, title, marker));
     }
@@ -375,7 +382,7 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMapClickLis
             MarkerManager markerManager = (MarkerManager)iterator.next();
             markerManager.getMarker().remove();
         }
-            currentEntityList.clear();
+        currentEntityList.clear();
     }
 
     private void hideInfoWindow(){

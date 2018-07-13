@@ -25,4 +25,6 @@
     <string name="prj_name">项目名称</string>
     <string name="login">登录</string>
     <string name="input">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
+    <string name="activity_account_manage0">该功能尚未开启！</string>
 </resources>

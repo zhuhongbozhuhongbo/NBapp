@@ -1,7 +1,6 @@
-package com.example.map3dtest.map;
+package com.example.map3dtest.main;
 
 import com.amap.api.maps.model.LatLng;
-import com.amap.api.maps.model.Marker;
 
 /**
  * Created by 朱宏博 on 2018/7/4.

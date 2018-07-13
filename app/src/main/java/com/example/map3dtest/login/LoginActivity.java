@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.nbapp.R;
-import com.example.map3dtest.map.MapActivity;
+import com.example.map3dtest.main.MapProjectActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String password=et_passwd.getText().toString();
             if(account.equals("admin")&&password.equals("admin"))
             {
-                Intent intent =new Intent(LoginActivity.this,MapActivity.class);
+                Intent intent =new Intent(LoginActivity.this,MapProjectActivity.class);
                 startActivity(intent);
             }
             else Toast.makeText(LoginActivity.this,"account or password is invalid",Toast.LENGTH_SHORT).show();

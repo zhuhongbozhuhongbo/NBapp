@@ -1,4 +1,4 @@
-package com.example.map3dtest.map;
+package com.example.map3dtest.main;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -35,8 +35,6 @@ import com.amap.api.maps.utils.SpatialRelationUtil;
 import com.amap.api.maps.utils.overlay.SmoothMoveMarker;
 import com.example.nbapp.R;
 import com.example.map3dtest.Utils.ByteCompile;
-import com.example.map3dtest.Utils.Position2ID;
-import com.example.map3dtest.charts.ChartActivitySec;
 import com.example.map3dtest.dom4j.ChartDatas;
 import com.example.map3dtest.nettyclient.Constant;
 import com.example.map3dtest.nettyclient.INettyClient;

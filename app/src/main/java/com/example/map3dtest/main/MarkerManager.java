@@ -1,4 +1,4 @@
-package com.example.map3dtest.map;
+package com.example.map3dtest.main;
 
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
