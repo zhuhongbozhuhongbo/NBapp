@@ -62,9 +62,7 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
 
 
     private LinearLayout jdSelect;
-    private LinearLayout mselect_projectdevice;
 
-    private TextView msearch_tv;
     private int counter = 0;
     private ImageView Ighome_page_0;
     private ImageView Ighome_page_1;
@@ -77,9 +75,9 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_map);
+        setContentView(R.layout.activity_device_map);
 
-        mapView = (MapView)findViewById(R.id.home_page_mapview_0);
+        mapView = (MapView)findViewById(R.id.device_page_mapview_0);
         mapView.onCreate(savedInstanceState);
 
         initView();
@@ -139,31 +137,32 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
 
     @Override
     public void onClick(View v){
+        Intent intent = new Intent();
         switch (v.getId()){
-            case R.id.jdselector:
+            case R.id.device_jdselector:
                 BottomDialog dialog = new BottomDialog(MapDeviceActivity.this);
                 dialog.setOnAddressSelectedListener(MapDeviceActivity.this);
                 dialog.show();
                 break;
 
-            case R.id.select_projectdevice:
-                if(GlobalStateManager.projectdevice == true){//此时主页为“项目管理”
-                    Intent intent = new Intent(MapDeviceActivity.this, LocationSelectActivity.class);
-                    startActivity(intent);
-                }else if(GlobalStateManager.projectdevice == false){//此时主页为“设备管理
-                    Intent intent = new Intent(MapDeviceActivity.this, SearchPageActivity.class);
-                    startActivity(intent);
-                }
+
+
+            case R.id.home_page_device_0:
+                intent.setClass(MapDeviceActivity.this, MapProjectActivity.class);
+                startActivity(intent);
                 break;
 
+            case R.id.home_page_device_1:
 
-            case R.id.home_page_0:
+            case R.id.home_page_device_2:
+                intent.setClass(MapDeviceActivity.this, DeviceMaintainActivity.class);
+                startActivity(intent);
+                break;
 
-            case R.id.home_page_1:
-
-            case R.id.home_page_2:
-
-            case R.id.home_page_3:
+            case R.id.home_page_device_3:
+                intent.setClass(MapDeviceActivity.this, AccountManageActivity.class);
+                startActivity(intent);
+                break;
 
 
 
@@ -310,25 +309,24 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
         //super.onBackPressed();
         Log.d("haha", "按下");
     }
-    private void initView() {
-        mapView = (MapView) findViewById(R.id.home_page_mapview_0);//地图
-        msearch_tv = findViewById(R.id.search_tv);
-        jdSelect = (LinearLayout)findViewById(R.id.jdselector);//唤醒popupWindow的按键
-        jdSelect.setOnClickListener(this);
-        mselect_projectdevice = (LinearLayout)findViewById(R.id.select_projectdevice);
-        mselect_projectdevice.setOnClickListener(this);
 
-        Ighome_page_0 = (ImageView)findViewById(R.id.home_page_0);
-        Ighome_page_1 = (ImageView)findViewById(R.id.home_page_1);
-        Ighome_page_2 = (ImageView)findViewById(R.id.home_page_2);
-        Ighome_page_3 = (ImageView)findViewById(R.id.home_page_3);
+
+    private void initView() {
+        mapView = (MapView) findViewById(R.id.device_page_mapview_0);//地图
+        jdSelect = (LinearLayout)findViewById(R.id.device_jdselector);//唤醒popupWindow的按键
+        jdSelect.setOnClickListener(this);
+
+
+        Ighome_page_0 = (ImageView)findViewById(R.id.home_page_device_0);
+        Ighome_page_1 = (ImageView)findViewById(R.id.home_page_device_1);
+        Ighome_page_2 = (ImageView)findViewById(R.id.home_page_device_2);
+        Ighome_page_3 = (ImageView)findViewById(R.id.home_page_device_3);
 
         Ighome_page_0.setOnClickListener(this);
         Ighome_page_1.setOnClickListener(this);
         Ighome_page_2.setOnClickListener(this);
         Ighome_page_3.setOnClickListener(this);
 
-        msearch_tv.setText("请选择项目地区");
 
     }
 

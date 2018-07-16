@@ -20,16 +20,30 @@
         <activity
             android:name="com.example.map3dtest.login.LoginActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"></activity>
 
-        </activity>
         <activity
             android:name="com.example.map3dtest.main.MapProjectActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name="com.example.map3dtest.main.MapDeviceActivity"/>
-        <activity android:name="com.example.map3dtest.main.DeviceMaintainActivity" />
-        <activity android:name="com.example.map3dtest.main.AccountManageActivity"/>
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.map3dtest.main.MapDeviceActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.map3dtest.main.DeviceMaintainActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.map3dtest.main.AccountManageActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.map3dtest.MainActivity"
             android:screenOrientation="portrait" />
@@ -86,14 +100,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.map3dtest.functest.FuncActivitySec" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name="com.example.map3dtest.functest.FuncActivitySec">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name="com.example.map3dtest.functest.FuncActivityTrd">
 
+        </activity>
     </application>
 
 </manifest>

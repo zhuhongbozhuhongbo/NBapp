@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="设备静态信息"
+            android:text="所有设备静态信息"
             />
 
         <Button

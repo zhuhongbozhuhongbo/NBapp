@@ -81,12 +81,12 @@ public class FuncActivitySec extends AppCompatActivity implements View.OnClickLi
         NettyClient.getInstance().addDataReceiveListener(new INettyClient.OnDataReceiveListener() {
             @Override
             public void onDataReceive(int mt, ChartDatas body) {
-                Log.e("haha", "FuncActivity收到:");
-                String result = "querymode:" + body.getQuerymode() + " type:" + body.getType() + " field:" +
-                        body.getField() + " p1:" + body.getP1() + " " + " p2:" + body.getP2() + " " + " p3:" + body.getP3() + " "
-                        + " p4:" + body.getP4() + " " + " p5:" + body.getP5() + " " + " p6:" + body.getP6() + " " + " p7:" + body.getP7() + " " + " p8:" + body.getP8() + " "
-                        + " p9:" + body.getP9() + " " + " p10:" + body.getP10() + " p0:" + body.getP0() + " " ;
 
+                String result = "querymode:" + body.getQuerymode() + " type:" + body.getType() + " field:" +
+                        body.getField()  + " p2:" + body.getP2() + " " + " p3:" + body.getP3() + " "
+                        + " p4:" + body.getP4() + " " + " p5:" + body.getP5() + " " + " p6:" + body.getP6() + " " + " p7:" + body.getP7() + " " + " p8:" + body.getP8() + " "
+                        + " p9:" + body.getP9() + " " + " p10:" + body.getP10() + " p0:" + body.getP0() + " " + " p1:" + body.getP1();
+                Log.d("haha", "FuncActivity收到:" + result);
                 if(body.getType().equals("DDI")){
 
                 }else if(body.getType().equals("DSI")){
@@ -197,8 +197,9 @@ public class FuncActivitySec extends AppCompatActivity implements View.OnClickLi
                     "<querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>太湖隧道项目</p3><p4>empty</p4><p5>empty</p5></query>", 0);
             Log.d("haha", "jt");*/
 
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>numberPlate</field><type>DSI</type>" +
-                    "<querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>太湖隧道项目</p3><p4>empty</p4><p5>empty</p5></query>", 0);
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
+                    "<type>DSI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3>" +
+                    "<p4>empty</p4><p5>empty</p5></query>", 0);
             Log.d("haha", "jt");
         }else if(v.getId() == R.id.button2){
             //项目部

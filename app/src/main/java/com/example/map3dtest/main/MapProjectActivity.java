@@ -57,13 +57,11 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
     private InfoWinAdapter adapter;
     private ArrayList currentEntityList = new ArrayList<MarkerManager>();
 
-    private boolean markerflag = false;//false为
 
+  private boolean markerflag = false;//false为
 
     private LinearLayout jdSelect;
-    private LinearLayout mselect_projectdevice;
 
-    private TextView msearch_tv;
     private int counter = 0;
     private ImageView Ighome_page_0;
     private ImageView Ighome_page_1;
@@ -138,6 +136,7 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
 
     @Override
     public void onClick(View v){
+
         Intent intent = new Intent();
         switch (v.getId()){
             case R.id.jdselector:
@@ -146,32 +145,25 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
                 dialog.show();
                 break;
 
-            case R.id.select_projectdevice:
-                if(GlobalStateManager.projectdevice == true){//此时主页为“项目管理”
-                    intent.setClass(MapProjectActivity.this, LocationSelectActivity.class);
-                    startActivity(intent);
-                }else if(GlobalStateManager.projectdevice == false){//此时主页为“设备管理
-                    intent.setClass(MapProjectActivity.this, SearchPageActivity.class);
-                    startActivity(intent);
-                }
+            case R.id.home_page_0:
+                Log.d("haha", "home_page_0 click!");
                 break;
 
-
-            case R.id.home_page_0:
-
-
             case R.id.home_page_1:
+                Log.d("haha", "home_page_1 click!");
                 intent.setClass(MapProjectActivity.this, MapDeviceActivity.class);
                 startActivity(intent);
+                break;
 
             case R.id.home_page_2:
                 intent.setClass(MapProjectActivity.this, DeviceMaintainActivity.class);
                 startActivity(intent);
+                break;
 
             case R.id.home_page_3:
                 intent.setClass(MapProjectActivity.this, AccountManageActivity.class);
                 startActivity(intent);
-
+                break;
         }
 
     }
@@ -323,11 +315,9 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
     }
     private void initView() {
         mapView = (MapView) findViewById(R.id.home_page_mapview_0);//地图
-        msearch_tv = findViewById(R.id.search_tv);
+
         jdSelect = (LinearLayout)findViewById(R.id.jdselector);//唤醒popupWindow的按键
         jdSelect.setOnClickListener(this);
-        mselect_projectdevice = (LinearLayout)findViewById(R.id.select_projectdevice);
-        mselect_projectdevice.setOnClickListener(this);
 
         Ighome_page_0 = (ImageView)findViewById(R.id.home_page_0);
         Ighome_page_1 = (ImageView)findViewById(R.id.home_page_1);
@@ -339,7 +329,6 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
         Ighome_page_2.setOnClickListener(this);
         Ighome_page_3.setOnClickListener(this);
 
-        msearch_tv.setText("请选择项目地区");
 
     }
 

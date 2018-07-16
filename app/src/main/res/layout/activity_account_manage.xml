@@ -1,15 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.map3dtest.main.AccountManageActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.map3dtest.main.AccountManageActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/activity_account_manage0"/>
+    <!--   需要注意的是TableRow不需要设置宽度layout_width和高度layoutJieight，
+         其宽度一定是match_parent，即自动填充父容器，高度一定为wrap_content，即根据内容改变高度。-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:stretchColumns="*">
 
-</android.support.constraint.ConstraintLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:id="@+id/account_home_page_0"
+                android:layout_width="35dp"
+                android:layout_height="21dp"
+                android:src="@drawable/tab_home" />
+
+            <ImageView
+                android:id="@+id/account_home_page_1"
+                android:layout_width="35dp"
+                android:layout_height="21dp"
+                android:src="@drawable/tab_news" />
+
+            <ImageView
+                android:id="@+id/account_home_page_2"
+                android:layout_width="35dp"
+                android:layout_height="21dp"
+                android:src="@drawable/tab_maintain" />
+
+            <ImageView
+                android:id="@+id/account_home_page_3"
+                android:layout_width="35dp"
+                android:layout_height="21dp"
+                android:src="@drawable/tab_account" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:text="项目管理"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:text="设备管理"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:text="设备维护"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:text="我的账户"
+                android:textSize="10dp" />
+
+        </TableRow>
+
+    </TableLayout>
+</RelativeLayout>
