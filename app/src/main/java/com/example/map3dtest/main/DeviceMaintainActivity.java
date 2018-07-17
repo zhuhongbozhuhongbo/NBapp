@@ -12,12 +12,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.amap.api.maps.MapView;
+import com.example.map3dtest.activitycollector.ActivityCollector;
+import com.example.map3dtest.activitycollector.BaseActivity;
 import com.example.nbapp.R;
 
 import chihane.jdaddressselector.BottomDialog;
 import mlxy.utils.Dev;
 
-public class DeviceMaintainActivity extends AppCompatActivity implements View.OnClickListener{
+public class DeviceMaintainActivity extends BaseActivity implements View.OnClickListener{
     private ImageView Ighome_page_0;
     private ImageView Ighome_page_1;
     private ImageView Ighome_page_2;
@@ -86,7 +88,14 @@ public class DeviceMaintainActivity extends AppCompatActivity implements View.On
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        DeviceMaintainActivity.this.finish();
+                             /*
+                        可在调用ActivityCollector.getActivityCollector().finishAll();之后，
+                        再调用killProcess()，以保证完全退出。
+
+                        注意：killProcess()只能用于杀掉当前进程，不能杀死其他进程
+                         */
+                        ActivityCollector.getActivityCollector().finishAll();
+                        android.os.Process.killProcess(android.os.Process.myPid());
                     }
                 });
         builder.setNegativeButton("取消",

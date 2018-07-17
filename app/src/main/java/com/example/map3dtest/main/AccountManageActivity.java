@@ -11,11 +11,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.map3dtest.activitycollector.ActivityCollector;
+import com.example.map3dtest.activitycollector.BaseActivity;
 import com.example.nbapp.R;
 
 import mlxy.utils.Dev;
 
-public class AccountManageActivity extends AppCompatActivity implements View.OnClickListener{
+public class AccountManageActivity extends BaseActivity implements View.OnClickListener{
     private ImageView Ighome_page_0;
     private ImageView Ighome_page_1;
     private ImageView Ighome_page_2;
@@ -85,7 +87,14 @@ public class AccountManageActivity extends AppCompatActivity implements View.OnC
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        AccountManageActivity.this.finish();
+                             /*
+                        可在调用ActivityCollector.getActivityCollector().finishAll();之后，
+                        再调用killProcess()，以保证完全退出。
+
+                        注意：killProcess()只能用于杀掉当前进程，不能杀死其他进程
+                         */
+                        ActivityCollector.getActivityCollector().finishAll();
+                        android.os.Process.killProcess(android.os.Process.myPid());
                     }
                 });
         builder.setNegativeButton("取消",

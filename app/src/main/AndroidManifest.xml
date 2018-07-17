@@ -29,22 +29,22 @@
         </activity>
         <activity
             android:name="com.example.map3dtest.main.MapProjectActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.example.map3dtest.main.MapDeviceActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <activity
             android:name="com.example.map3dtest.main.DeviceMaintainActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <activity
             android:name="com.example.map3dtest.main.AccountManageActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <activity

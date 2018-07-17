@@ -25,6 +25,8 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 
 import com.example.map3dtest.Utils.CustomToast;
+import com.example.map3dtest.activitycollector.ActivityCollector;
+import com.example.map3dtest.activitycollector.BaseActivity;
 import com.example.map3dtest.markers.MarkerManager;
 import com.example.map3dtest.search.AddressSelect;
 import com.example.nbapp.R;
@@ -49,7 +51,7 @@ import chihane.jdaddressselector.model.Province;
 import chihane.jdaddressselector.model.Street;
 import mlxy.utils.T;
 
-public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapClickListener, AMap.OnMarkerClickListener, View.OnClickListener, OnAddressSelectedListener{
+public class MapProjectActivity extends BaseActivity implements AMap.OnMapClickListener, AMap.OnMarkerClickListener, View.OnClickListener, OnAddressSelectedListener{
 
 
     private MapView mapView = null;
@@ -293,7 +295,15 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        MapProjectActivity.this.finish();
+
+                          /*
+                        可在调用ActivityCollector.getActivityCollector().finishAll();之后，
+                        再调用killProcess()，以保证完全退出。
+
+                        注意：killProcess()只能用于杀掉当前进程，不能杀死其他进程
+                         */
+                        ActivityCollector.getActivityCollector().finishAll();
+                        android.os.Process.killProcess(android.os.Process.myPid());
                     }
                 });
         builder.setNegativeButton("取消",
