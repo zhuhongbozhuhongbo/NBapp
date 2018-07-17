@@ -138,7 +138,9 @@ public class InfoWinAdapter implements AMap.InfoWindowAdapter, View.OnClickListe
         } else if(id == R.id.project_window_button1){
             Intent intentSec = new Intent("com.example.nbiot_5.ACTION_START");
             Bundle dataSec = new Bundle();
-            TransformData transTrd = new TransformData(agentName,false);
+            Log.d("haha", "InfoWinAdapter" + agentName);
+            TransformData transTrd = new TransformData(agentName);
+            transTrd.setProvinceOrName(false);
             dataSec.putParcelable("prjName", transTrd);
             intentSec.putExtras(dataSec);//跳转到项目的设备列表页面
             intentSec.addCategory("com.example.nbiot_5.PROJECT_CATEGORY");

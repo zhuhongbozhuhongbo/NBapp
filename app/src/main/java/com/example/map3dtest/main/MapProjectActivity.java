@@ -24,6 +24,7 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 
+import com.example.map3dtest.Utils.CustomToast;
 import com.example.map3dtest.markers.MarkerManager;
 import com.example.map3dtest.search.AddressSelect;
 import com.example.nbapp.R;
@@ -68,6 +69,7 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
     private ImageView Ighome_page_2;
     private ImageView Ighome_page_3;
     private TextView msearch_tv;
+    private int markerCounter = 0;
 
     private Handler mHandler = new Handler();
 
@@ -127,6 +129,13 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
                             ) * 180.0 / Integer.MAX_VALUE);
                             Log.d("haha", "MapProjectActivity" + resultLatLng);
 
+                            //切换地图显示区域
+                            CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(resultLatLng,7,30,0));
+                            aMap.moveCamera(mCameraUpdate);
+
+                            markerCounter++;
+                            //Toast.makeText(getApplicationContext(), "获取到第" + markerCounter + "个新数据！" , Toast.LENGTH_SHORT).show()
+                            CustomToast.showToast(MapProjectActivity.this,  "获取到第" + markerCounter + "个新数据！", 400);
                             addDeviceMarkerToMap(resultLatLng, titleString[i]);
                         }
                         Log.d("haha", "非空" + "g0 :" + GPSString[1] + " " + GPSString[2]);
@@ -162,6 +171,7 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
             case R.id.search_tv:
                 intent.setClass(MapProjectActivity.this, AddressSelect.class);
                 startActivity(intent);
+                //finish();
                 break;
 
             case R.id.jdselector:
@@ -178,19 +188,19 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
                 Log.d("haha", "home_page_1 click!");
                 intent.setClass(MapProjectActivity.this, MapDeviceActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
                 break;
 
             case R.id.home_page_2:
                 intent.setClass(MapProjectActivity.this, DeviceMaintainActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
                 break;
 
             case R.id.home_page_3:
                 intent.setClass(MapProjectActivity.this, AccountManageActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
                 break;
         }
 

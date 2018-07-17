@@ -14,14 +14,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdate;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 
+import com.example.map3dtest.Utils.CustomToast;
 import com.example.map3dtest.markers.MarkerManager;
 import com.example.map3dtest.search.AddressSelect;
 import com.example.nbapp.R;
@@ -70,6 +75,8 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
     String[] DvString = {};
     String[] PrjString = {};
     String[] PlateString = {};
+
+    private int markerCounter = 0;
 
     private Handler mHandler = new Handler();
 
@@ -121,7 +128,7 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
                         //第二步按照设备列表依次查询GPSInformation
                         NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd>" +
                                 "<field>GPSInformation</field><type>DDI</type><querymode>findLatest</querymode><p0>" + IdString[i] +
-                                "</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 400);//4526
+                                "</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", i * 400);//4526
                     }
 
                 }else if(body.getType().equals("DDI") && body.getField().equals("GPSInformation") && body.getQuerymode().equals("findLatest")){
@@ -152,6 +159,12 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
                         Log.d("haha", "MapDeviceActivity" + resultLatLng);
                         Log.d("haha", "MapDeviceActivity" + body);
 
+                        markerCounter++;
+                        //Toast.makeText(getApplicationContext(), "获取到第" + markerCounter + "个新数据！" , Toast.LENGTH_SHORT).show()
+                        CustomToast.showToast(MapDeviceActivity.this,  "获取到第" + markerCounter + "个新数据！", 400);
+                        //切换地图显示区域
+                        CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(resultLatLng,17,30,0));
+                        aMap.moveCamera(mCameraUpdate);
 
                         addDeviceMarkerToMap(resultLatLng, getTitle(body.getId()));
                     }
@@ -179,6 +192,7 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
             case R.id.search_tv_device:
                 intent.setClass(MapDeviceActivity.this, AddressSelect.class);
                 startActivity(intent);
+                //finish();
                 break;
 
 
@@ -186,7 +200,7 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
             case R.id.home_page_device_0:
                 intent.setClass(MapDeviceActivity.this, MapProjectActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
                 break;
 
             case R.id.home_page_device_1:
@@ -194,13 +208,13 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
             case R.id.home_page_device_2:
                 intent.setClass(MapDeviceActivity.this, DeviceMaintainActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
                 break;
 
             case R.id.home_page_device_3:
                 intent.setClass(MapDeviceActivity.this, AccountManageActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
                 break;
 
 
