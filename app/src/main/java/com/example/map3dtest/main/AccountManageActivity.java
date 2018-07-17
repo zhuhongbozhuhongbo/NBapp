@@ -51,11 +51,13 @@ public class AccountManageActivity extends AppCompatActivity implements View.OnC
             case R.id.account_home_page_0:
                 intent.setClass(AccountManageActivity.this, MapProjectActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.account_home_page_1:
                 intent.setClass(AccountManageActivity.this, MapDeviceActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.account_home_page_2:
@@ -65,6 +67,7 @@ public class AccountManageActivity extends AppCompatActivity implements View.OnC
                 */
                intent.setClass(AccountManageActivity.this, DeviceMaintainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.account_home_page_3:

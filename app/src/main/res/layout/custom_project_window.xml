@@ -15,7 +15,34 @@
         android:layout_width="66dp"
         android:layout_height="17dp" />
  <!--   android:text="陈翔路站工程"代码中动态设置内容-->
-    <Button
+
+    <RelativeLayout
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="106dp"
+        android:layout_height="24dp">
+        <Button
+            android:id="@+id/project_window_button0"
+            android:background="@drawable/details_button"
+            android:text="项目详情"
+            android:textColor="@color/colorLightGreyMap"
+            android:textSize="12dp"
+            android:layout_alignParentStart="true"
+            android:layout_width="50dp"
+            android:layout_height="24dp" />
+
+        <Button
+            android:id="@+id/project_window_button1"
+            android:background="@drawable/details_button"
+            android:text="设备动态"
+            android:textColor="@color/colorLightGreyMap"
+            android:textSize="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="50dp"
+            android:layout_height="24dp" />
+    </RelativeLayout>
+<!--    <Button
         android:text="详情"
         android:layout_marginTop="8dp"
         android:textColor="@color/colorLightGreyMap"
@@ -26,5 +53,5 @@
         android:layout_height="24dp"
         android:background="@drawable/details_button"
         />
-    <!-- android:background="@drawable/shapecircle"-->
+     android:background="@drawable/shapecircle"-->
 </LinearLayout>

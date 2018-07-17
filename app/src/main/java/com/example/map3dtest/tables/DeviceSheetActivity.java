@@ -71,7 +71,7 @@ public class DeviceSheetActivity extends AppCompatActivity implements View.OnCli
 
     private void getQuery(){
 
-        TransformData transformDataTrd = getIntent().getParcelableExtra("stu");
+        TransformData transformDataTrd = getIntent().getParcelableExtra("deviceDetail");
         Log.d("haha", "DeviceSheetID" + transformDataTrd.getID());
         Log.d("haha", "DeviceSheetPlate" + transformDataTrd.getNumberPlate());
         Log.d("haha", "DeviceSheetPrj" + transformDataTrd.getPrjName());

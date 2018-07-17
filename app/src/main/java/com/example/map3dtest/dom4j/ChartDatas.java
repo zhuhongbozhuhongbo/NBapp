@@ -6,7 +6,6 @@ package com.example.map3dtest.dom4j;
 
 public class ChartDatas {
 
-
    public String getField() {
       return field;
    }
@@ -133,4 +132,14 @@ public class ChartDatas {
    private String p8;
    private String p9;
    private String p10;
+
+   public String getId() {
+      return id;
+   }
+
+   public void setId(String id) {
+      this.id = id;
+   }
+
+   private String id;
 }

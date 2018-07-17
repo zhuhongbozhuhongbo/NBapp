@@ -100,7 +100,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="1.0dp"
                 android:layout_marginLeft="1.0dp"
-                android:layout_weight="4"
+                android:layout_weight="8"
                 android:background="#ffffffff"
                 android:ellipsize="marquee"
                 android:gravity="center"
@@ -111,7 +111,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="1.0dp"
                 android:layout_marginRight="1.0dp"
-                android:layout_weight="4"
+                android:layout_weight="0"
                 android:background="#ffffff"
                 android:ellipsize="marquee"
                 android:gravity="center"
@@ -119,8 +119,8 @@
                 >
                 <Button
                     android:id="@+id/project_button_0"
-                    android:layout_width="90dp"
-                    android:layout_height="35dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginRight="15dp"
@@ -323,8 +323,8 @@
                 android:gravity="center">
                 <Button
                     android:id="@+id/project_button_1"
-                    android:layout_width="90dp"
-                    android:layout_height="35dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:background="@drawable/button_style"
                     android:ellipsize="marquee"

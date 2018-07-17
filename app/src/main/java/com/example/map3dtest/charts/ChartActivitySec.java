@@ -185,7 +185,7 @@ public class ChartActivitySec extends AppCompatActivity implements View.OnClickL
     private void getQueryID(){
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        TransformData trans = bundle.getParcelable("position");
+        TransformData trans = bundle.getParcelable("deviceData");
         queryID = trans.getID();
         //Log.d("haha", "ID" + queryID);
         numberPlate = trans.getNumberPlate();

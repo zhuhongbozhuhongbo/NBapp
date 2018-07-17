@@ -16,26 +16,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
-import com.amap.api.maps.CameraUpdate;
-import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
-import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 
+import com.example.map3dtest.markers.MarkerManager;
+import com.example.map3dtest.search.AddressSelect;
 import com.example.nbapp.R;
 import com.example.map3dtest.Utils.ByteCompile;
 import com.example.map3dtest.Utils.GlobalStateManager;
 import com.example.map3dtest.adapter.InfoWinAdapter;
-import com.example.map3dtest.Utils.Matching;
 import com.example.map3dtest.dom4j.ChartDatas;
 import com.example.map3dtest.nettyclient.Constant;
 import com.example.map3dtest.nettyclient.INettyClient;
 import com.example.map3dtest.nettyclient.NettyClient;
-import com.example.map3dtest.search.SearchPageActivity;
-import com.example.map3dtest.tables.LocationSelectActivity;
 
 
 import java.util.ArrayList;
@@ -68,9 +64,31 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
     private ImageView Ighome_page_1;
     private ImageView Ighome_page_2;
     private ImageView Ighome_page_3;
+    private TextView msearch_tv;
+
+    String[] IdString = {};
+    String[] DvString = {};
+    String[] PrjString = {};
+    String[] PlateString = {};
 
     private Handler mHandler = new Handler();
 
+/*  这段代码与launchMode="singleTask"配合使用，参见：  https://blog.csdn.net/findsafety/article/details/9664061
+  @Override
+    protected void onNewIntent(Intent intent) {
+
+        super.onNewIntent(intent);
+        setIntent(intent);//must store the new intent unless getIntent() will return the old one
+        processExtraData();
+        GlobalStateManager.projectdevice = false;
+        clearMarkers();
+        queryDevice();
+    }
+
+    private void processExtraData(){
+        Intent intent = getIntent();
+        //use the data received here
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,57 +101,70 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
         initView();
         initMap();
 
+        GlobalStateManager.projectdevice = false;
         NettyClient.getInstance().addDataReceiveListener(new INettyClient.OnDataReceiveListener() {
             @Override
             public void onDataReceive(int mt, ChartDatas body) {
 
+                //第一步，拿到所有设备的信息，
                 //注:若为 #1#,解析出的 data.length = 2
-                counter++;
-                if(body.getType().equals("DDI") && body.getField().equals("GPSInformation")&&body.getQuerymode().equals("findLatest")) {
-                    String data[] = body.getP0().trim().split("#");
+                if(body.getType().equals("DSI") && body.getField().equals("all") && body.getQuerymode().equals("findAll")){
+                    Log.d("haha", "receive all the dsi datas");
+                    IdString = body.getP2().trim().split("#");
+                    DvString = body.getP9().trim().split("#");
+                    PrjString = body.getP4().trim().split("#");
+                    PlateString = body.getP5().trim().split("#");
 
-                    if(data.length != 0){
-                        Log.d("haha", "MapProjectActivity:" + " data0" + data[0] + "  data1" + data[1] + " counter" + counter);
+                    for(int i = 1; i < IdString.length; i++) {//解析后数组中IdString[0]为空的
+                        Log.d("haha", "fasong: " + IdString[i] + "  " + DvString[i]);
 
+                        //第二步按照设备列表依次查询GPSInformation
+                        NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd>" +
+                                "<field>GPSInformation</field><type>DDI</type><querymode>findLatest</querymode><p0>" + IdString[i] +
+                                "</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 400);//4526
+                    }
+
+                }else if(body.getType().equals("DDI") && body.getField().equals("GPSInformation") && body.getQuerymode().equals("findLatest")){
+                    Log.d("haha", "收到数据");
+                    String[] LatLngString = body.getP0().trim().split("#");
+                    //Log.d("haha", "内容: " + LatLngString[0] + " a" + LatLngString[1] + "size: " + LatLngString.length);
+                    Log.d("haha",  "size: " + LatLngString.length);
+                    if(LatLngString.length == 0){
+
+                       /* 其实isEmpty完全等同于string.length()==0如果String本身是null，那么使用string.isEmpty()会报空指针
+                       异常（NullPointerException)判断一个String为空的最安全的方法，还是 string ==null || string.isEmpty()
+
+                        作者：之韦华
+                        链接：https://www.zhihu.com/question/20570393/answer/15511269
+                        来源：知乎
+                        著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。*/
+                        Log.d("haha", "空");
+
+                    }else{
+                        Log.d("haha", "非空");
 
                         //这段代码后期需要封装，拟定采用内部类
-                        byte[] mLatLng = Base64.decode(data[1], Base64.DEFAULT);
+                        byte[] mLatLng = Base64.decode(LatLngString[1], Base64.DEFAULT);//LatLngString[1]中存储了数据，而LatLngString[0]中为空
 
                         LatLng resultLatLng = new LatLng(ByteCompile.byte2Int(mLatLng[0], mLatLng[1], mLatLng[2], mLatLng[3]
                         ) * 90.0 / Integer.MAX_VALUE, ByteCompile.byte2Int(mLatLng[4], mLatLng[5], mLatLng[6], mLatLng[7]
                         ) * 180.0 / Integer.MAX_VALUE);
-                        Log.d("haha", "MapProjectActivity" + resultLatLng);
-                        String title = "";
-                        if (counter == 1) {
-                            //4号
-                            title = "豫C 83576";
-                            Log.d("haha", "MapProjectActivity" + title);
-
-                        } else if (counter == 2) {
-                            //5
-
-                            title = "皖K M1863";
-                            Log.d("haha", "MapProjectActivity" + title);
-                        } else if (counter == 3) {
-                            //6
-
-                            title = "鄂C 9C219";
-                            Log.d("haha", "MapProjectActivity" + title);
-                            counter = 0;
-                        }
-
-                        addDeviceMarkerToMap(resultLatLng, title);
+                        Log.d("haha", "MapDeviceActivity" + resultLatLng);
+                        Log.d("haha", "MapDeviceActivity" + body);
 
 
-                        CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(resultLatLng, 16, 30, 0));
-                        aMap.moveCamera(mCameraUpdate);
+                        addDeviceMarkerToMap(resultLatLng, getTitle(body.getId()));
                     }
-                }
 
+                }
 
             }
         });
+
+        Log.d("haha", "startquery");
+        queryDevice();
     }
+
 
     @Override
     public void onClick(View v){
@@ -145,11 +176,17 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
                 dialog.show();
                 break;
 
+            case R.id.search_tv_device:
+                intent.setClass(MapDeviceActivity.this, AddressSelect.class);
+                startActivity(intent);
+                break;
+
 
 
             case R.id.home_page_device_0:
                 intent.setClass(MapDeviceActivity.this, MapProjectActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.home_page_device_1:
@@ -157,11 +194,13 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
             case R.id.home_page_device_2:
                 intent.setClass(MapDeviceActivity.this, DeviceMaintainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.home_page_device_3:
                 intent.setClass(MapDeviceActivity.this, AccountManageActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
 
@@ -183,65 +222,27 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
         T.showShort(this, s);
 
 
-        if(GlobalStateManager.projectdevice == true) {
-            //参数依次是：视角调整区域的中心点坐标、希望调整到的缩放级别、俯仰角0°~45°（垂直与地图时为0）、偏航角 0~360° (正北方为0)  数小视野范围大
-            LatLng updateLatLng = Matching.latLngConvert(s);
-            GlobalStateManager.currentLatlng = updateLatLng;
-            CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(updateLatLng, 8, 30, 0));
-            aMap.moveCamera(mCameraUpdate);
-            clearMarkers();
-            addLandMarkerToMap(updateLatLng, s);
-        }else if(GlobalStateManager.projectdevice == false){
-            queryDevice(s);
-          /*  LatLng updateLatLng = Matching.latLngConvert(s);
-            GlobalStateManager.currentLatlng = updateLatLng;
-            CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(updateLatLng, 8, 30, 0));
-            aMap.moveCamera(mCameraUpdate);
-            clearMarkers();
-            addMarkerToMap(updateLatLng, s);*/
-        }
+    }
 
+
+    private String getTitle(String Id){
+        for(int i = 1; i < IdString.length; i++){
+            if(IdString[i].equals(Id)){
+                return IdString[i] + "#" + PrjString[i] + "#" + PlateString[i] + "#" + DvString[i];
+            }
+
+        }
+        return "无数据#无数据#无数据#无数据";
+    }
+
+    public void queryDevice(){
+        NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
+                "<type>DSI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3>" +
+                "<p4>empty</p4><p5>empty</p5></query>", 0);
 
     }
 
-    public void queryDevice(String province){
-        if(province.equals("江苏")){
-            Log.d("haha", "开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>4</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);//4526
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>5</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
 
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>6</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
-        }else if(province.equals("山东")){
-            Log.d("haha", "山东开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>PDI</type>" +
-                    "<querymode>findByProjectProvince</querymode><p0>empty</p0><p1>安徽</p1><p2>empty</p2><p3>null</p3><p4>null</p4><p5>null</p5></query>", 0);
-        }else if(province.equals("内蒙古")){
-            Log.d("haha", "开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DSI</type>" +
-                    "<querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>太湖隧道项目</p3><p4>empty</p4><p5>empty</p5></query>", 0);
-        }else if(province.equals("黑龙江")){
-            Log.d("haha", "heilong开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>4</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
-        }else if(province.equals("吉林")){
-            Log.d("haha", "jilin开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>4</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
-        }else if(province.equals("辽宁")){
-            Log.d("haha", "liaoning开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DDI</type>" +
-                    "<querymode>findByDate</querymode><p0>empty</p0><p1>2018-7-7</p1><p2>2018-7-7</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
-        }
-    }
 
     //maker的点击事件
     @Override
@@ -315,6 +316,8 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
         mapView = (MapView) findViewById(R.id.device_page_mapview_0);//地图
         jdSelect = (LinearLayout)findViewById(R.id.device_jdselector);//唤醒popupWindow的按键
         jdSelect.setOnClickListener(this);
+        msearch_tv = (TextView)findViewById(R.id.search_tv_device);
+        msearch_tv.setOnClickListener(this);
 
 
         Ighome_page_0 = (ImageView)findViewById(R.id.home_page_device_0);
@@ -356,6 +359,7 @@ public class MapDeviceActivity extends AppCompatActivity implements AMap.OnMapCl
                 .position(latLng)
                 .title(title)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_dev4))
+
         );
         // marker.showInfoWindow();
 

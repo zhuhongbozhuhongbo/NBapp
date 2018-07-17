@@ -52,11 +52,13 @@ public class DeviceMaintainActivity extends AppCompatActivity implements View.On
             case R.id.device_home_page_0:
                 intent.setClass(DeviceMaintainActivity.this, MapProjectActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.device_home_page_1:
                 intent.setClass(DeviceMaintainActivity.this, MapDeviceActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.device_home_page_2:
@@ -68,6 +70,7 @@ public class DeviceMaintainActivity extends AppCompatActivity implements View.On
             case R.id.device_home_page_3:
                 intent.setClass(DeviceMaintainActivity.this, AccountManageActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
 

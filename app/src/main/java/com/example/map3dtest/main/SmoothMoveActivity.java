@@ -209,7 +209,7 @@ public class SmoothMoveActivity extends Activity implements View.OnClickListener
     private void getQueryID(){
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        TransformData trans = bundle.getParcelable("position");
+        TransformData trans = bundle.getParcelable("deviceTrack");
         queryID = trans.getID();
         //Log.d("haha", "ID" + queryID);
         numberPlate = trans.getNumberPlate();

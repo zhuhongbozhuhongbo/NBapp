@@ -43,9 +43,13 @@ public class ProjectSheetActivity extends AppCompatActivity implements View.OnCl
     private LinearLayoutManager proSheetLayoutManager;
     private TextView mDeviceContent0;
     private TextView mDeviceContent1;
-    private TextView mDeviceContent8;
+
+
+    private String[] numberPlateData = {};
+    private String[] idData = {};
 
     private String queryPrjName = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +59,17 @@ public class ProjectSheetActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onDataReceive(int mt, ChartDatas body) {
                 Log.d("haha", "ProjectSheetActivity:" + " " + body);
-                if(body.getType().equals("DSI") && body.getField().equals("numberPlate") && body.getQuerymode().equals("findByProjectInformation")){
-                    String data[] = body.getP0().trim().split("#");
+                if (body.getType().equals("DSI") && body.getField().equals("all") && body.getQuerymode().equals("findByProjectInformation")) {
+                    numberPlateData = body.getP5().trim().split("#");
+                    idData = body.getP2().trim().split("#");
 
-                    if(data.length != 0){
+                    if (numberPlateData.length != 0) {
                         //data[0]为空
-                        Log.d("haha", "ProjectSheetActivity:" + " " + data[0]);
+                        Log.d("haha", "ProjectSheetActivity:" + " " + numberPlateData[0]);
                         mPrjDevDatas0.clear();
                         mPrjDevDatas1.clear();
-                        for(int i = 1; i < data.length; i++){
-                            mPrjDevDatas0.add(data[i]);
+                        for (int i = 1; i < numberPlateData.length; i++) {
+                            mPrjDevDatas0.add(numberPlateData[i]);
                             //mPrjDevDatas1.add(data[i]);
                             mPrjDevDatas1.add("点击查看");
                         }
@@ -75,10 +80,10 @@ public class ProjectSheetActivity extends AppCompatActivity implements View.OnCl
         });
 
         //以下为recyclerView代码
-        mPrjsheetDevRecyView = (RecyclerView)findViewById(R.id.prjsheet_dev_recycler);
+        mPrjsheetDevRecyView = (RecyclerView) findViewById(R.id.prjsheet_dev_recycler);
         mDeviceContent0 = findViewById(R.id.device_content_0);
         mDeviceContent1 = findViewById(R.id.device_content_1);
-        mDeviceContent8 = findViewById(R.id.device_content_8);
+
 
         //空数据，但还是先让mPrjDevdatas指向点东西
         mPrjDevDatas0 = new ArrayList<>();
@@ -115,30 +120,41 @@ public class ProjectSheetActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-        getQueryPrjName();
+        TransformData trans = getQueryPrjName();
 
-        //查询项目部信息
-        NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>numberPlate</field><type>DSI</type>" +
-                "<querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>" + queryPrjName + "</p3><p4>empty</p4><p5>empty</p5></query>", 0);
-        Log.d("haha", "queryPDI");
+        if (trans.isProvinceOrName()){//true代表参数为province
+            //按省份查询项目部信息
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>PDI</type>" +
+                    "<querymode>findByProjectProvince</querymode><p0></p0><p1>" + trans.getPrjName() + "</p1><p2>empty</p2><p3>null</p3><p4>null</p4><p5>null</p5></query>", 0);
+            Log.d("haha", "queryPDI 省|" + trans.getPrjName());
+            Log.d("haha", "queryPDI 省|" + trans.getPrjName());
+        }else{
+            //按项目名称查询项目部设备信息
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DSI</type>" +
+                    "<querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>" + trans.getPrjName() + "</p3><p4>empty</p4><p5>empty</p5></query>", 0);
+            Log.d("haha", "queryPDI 项目名|" + trans.getPrjName());
+        }
+
     }
 
-    private void getQueryPrjName(){
+    private TransformData getQueryPrjName(){
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        TransformData trans = bundle.getParcelable("positionSec");
+        TransformData trans = bundle.getParcelable("prjName");
         queryPrjName = trans.getPrjName();
         Log.d("haha", "prjName:" + queryPrjName);
 
+        //暂时不考虑全部信息从服务器拿
         if(queryPrjName.equals("太湖隧道项目")){
             mDeviceContent0.setText(queryPrjName);
             mDeviceContent1.setText("江苏省无锡市");
-            mDeviceContent8.setText("");
+
         }else{
             mDeviceContent0.setText("无");
             mDeviceContent1.setText("无");
-            mDeviceContent8.setText("无");
+
         }
+        return trans;
     }
 
     @Override
@@ -156,19 +172,24 @@ public class ProjectSheetActivity extends AppCompatActivity implements View.OnCl
                     public void onClick(DialogInterface dialog, int which){
                         Log.d("haha", "选中了" + which);
                         Bundle data = new Bundle();
-                        String ID = Position2ID.p2ID(position);
-                        TransformData trans = new TransformData(ID, mPrjDevDatas0.get(position), "");
-                        data.putParcelable("position", trans);
+                        Log.d("haha", "position:" + position);
+                        String ID = idData[position + 1];
+                        TransformData trans = new TransformData(ID, mPrjDevDatas0.get(position), queryPrjName);
+
                         Intent intent =new Intent();
-                        intent.putExtras(data);
+
                         switch (which){
 
                             case 0:
                                 intent.setClass(ProjectSheetActivity.this, ChartActivitySec.class);
+                                data.putParcelable("deviceData", trans);
+                                intent.putExtras(data);
                                 startActivity(intent);
                                 break;
                             case 1:
                                 intent.setClass(ProjectSheetActivity.this, SmoothMoveActivity.class);
+                                data.putParcelable("deviceTrack", trans);
+                                intent.putExtras(data);
                                 startActivity(intent);
                                 break;
                         }

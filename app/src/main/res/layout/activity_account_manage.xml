@@ -5,6 +5,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.map3dtest.main.AccountManageActivity">
+    <LinearLayout
+        android:gravity="center"
+        android:background="@color/colorPrimaryDarkMap"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:src="@drawable/logo"
+            android:layout_width="29dp"
+            android:layout_height="29dp" />
+        <TextView
+            android:text="中铁物联网"
+            android:textColor="@color/colorLightGreyMap"
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"

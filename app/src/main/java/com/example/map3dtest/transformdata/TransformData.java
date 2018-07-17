@@ -8,14 +8,31 @@ import android.os.Parcelable;
  */
 
 public class TransformData implements Parcelable{
-    private String ID;
-    private String numberPlate;
-    private String prjName;
+    private String ID = "";
+    private String numberPlate = "";
+    private String prjName = "";//该参数在provinceOrName为true时代表province，在provinceOrName为false时代表project name
+    private boolean provinceOrName = false;//true代表传递的参数为province，false代表传递的参数为project name
+
+    public TransformData(String prjName) {
+
+        this.prjName = prjName;
+    }
 
     public TransformData(String ID, String numberPlate, String prjName) {
         this.ID = ID;
         this.numberPlate = numberPlate;
         this.prjName = prjName;
+    }
+
+    public TransformData(String ID,boolean provinceOrName) {
+        this.ID = ID;
+        this.provinceOrName = provinceOrName;
+    }
+
+    public TransformData(String ID, String prjName, boolean provinceOrName) {
+        this.ID = ID;
+        this.prjName = prjName;
+        this.provinceOrName = provinceOrName;
     }
 
     public String getPrjName() {
@@ -42,6 +59,14 @@ public class TransformData implements Parcelable{
         this.ID = ID;
     }
 
+    public boolean isProvinceOrName() {
+        return provinceOrName;
+    }
+
+    public void setProvinceOrName(boolean provinceOrName) {
+        this.provinceOrName = provinceOrName;
+    }
+
     @Override
     public int describeContents(){
         return 0;
@@ -52,6 +77,7 @@ public class TransformData implements Parcelable{
         out.writeString(ID);
         out.writeString(numberPlate);
         out.writeString(prjName);
+        out.writeByte((byte)(provinceOrName ? 1 : 0));
     }
 
     public static final Creator<TransformData> CREATOR = new Creator<TransformData>(){
@@ -69,6 +95,7 @@ public class TransformData implements Parcelable{
         ID = in.readString();
         numberPlate = in.readString();
         prjName = in.readString();
+        provinceOrName = in.readByte() != 0;
     }
 
 

@@ -24,6 +24,8 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 
+import com.example.map3dtest.markers.MarkerManager;
+import com.example.map3dtest.search.AddressSelect;
 import com.example.nbapp.R;
 import com.example.map3dtest.Utils.ByteCompile;
 import com.example.map3dtest.Utils.GlobalStateManager;
@@ -33,8 +35,6 @@ import com.example.map3dtest.dom4j.ChartDatas;
 import com.example.map3dtest.nettyclient.Constant;
 import com.example.map3dtest.nettyclient.INettyClient;
 import com.example.map3dtest.nettyclient.NettyClient;
-import com.example.map3dtest.search.SearchPageActivity;
-import com.example.map3dtest.tables.LocationSelectActivity;
 
 
 import java.util.ArrayList;
@@ -67,78 +67,103 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
     private ImageView Ighome_page_1;
     private ImageView Ighome_page_2;
     private ImageView Ighome_page_3;
+    private TextView msearch_tv;
 
     private Handler mHandler = new Handler();
 
+/*    @Override
+    protected void onNewIntent(Intent intent) {
+
+        super.onNewIntent(intent);
+        setIntent(intent);//must store the new intent unless getIntent() will return the old one
+        processExtraData();
+        GlobalStateManager.projectdevice = true;
+        clearMarkers();
+        queryProject();
+    }
+
+    private void processExtraData(){
+        Intent intent = getIntent();
+        //use the data received here
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_map);
-
         mapView = (MapView)findViewById(R.id.home_page_mapview_0);
         mapView.onCreate(savedInstanceState);
 
         initView();
         initMap();
+        /*NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
+                "<type>PDI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>null</p3>" +
+                "<p4>null</p4><p5>null</p5></query>", 0);*/
 
+        GlobalStateManager.projectdevice = true;
         NettyClient.getInstance().addDataReceiveListener(new INettyClient.OnDataReceiveListener() {
             @Override
             public void onDataReceive(int mt, ChartDatas body) {
 
                 //注:若为 #1#,解析出的 data.length = 2
-                counter++;
-                if(body.getType().equals("DDI") && body.getField().equals("GPSInformation")&&body.getQuerymode().equals("findLatest")) {
-                    String data[] = body.getP0().trim().split("#");
+                if (body.getType().equals("PDI") && body.getField().equals("all") && body.getQuerymode().equals("findAll")) {
+                    Log.d("haha", "receive all the pdi datas");
 
-                    if(data.length != 0){
-                        Log.d("haha", "MapProjectActivity:" + " data0" + data[0] + "  data1" + data[1] + " counter" + counter);
+                    String[] titleString = body.getP1().trim().split("#");
+                    String[] GPSString = body.getP10().trim().split("#");
+                    //Log.d("haha", "内容: " + LatLngString[0] + " a" + LatLngString[1] + "size: " + LatLngString.length);
+                    Log.d("haha", "size: " + titleString.length);
+                    if (GPSString.length == 0) {
 
+                        Log.d("haha", "空");
 
-                        //这段代码后期需要封装，拟定采用内部类
-                        byte[] mLatLng = Base64.decode(data[1], Base64.DEFAULT);
+                    } else {
+                        for(int i = 1; i < GPSString.length; i++){
+                            //这段代码后期需要封装，拟定采用内部类
+                            byte[] mLatLng = Base64.decode(GPSString[i], Base64.DEFAULT);//LatLngString[1]中存储了数据，而LatLngString[0]中为空
 
-                        LatLng resultLatLng = new LatLng(ByteCompile.byte2Int(mLatLng[0], mLatLng[1], mLatLng[2], mLatLng[3]
-                        ) * 90.0 / Integer.MAX_VALUE, ByteCompile.byte2Int(mLatLng[4], mLatLng[5], mLatLng[6], mLatLng[7]
-                        ) * 180.0 / Integer.MAX_VALUE);
-                        Log.d("haha", "MapProjectActivity" + resultLatLng);
-                        String title = "";
-                        if (counter == 1) {
-                            //4号
-                            title = "豫C 83576";
-                            Log.d("haha", "MapProjectActivity" + title);
+                            LatLng resultLatLng = new LatLng(ByteCompile.byte2Int(mLatLng[0], mLatLng[1], mLatLng[2], mLatLng[3]
+                            ) * 90.0 / Integer.MAX_VALUE, ByteCompile.byte2Int(mLatLng[4], mLatLng[5], mLatLng[6], mLatLng[7]
+                            ) * 180.0 / Integer.MAX_VALUE);
+                            Log.d("haha", "MapProjectActivity" + resultLatLng);
 
-                        } else if (counter == 2) {
-                            //5
-
-                            title = "皖K M1863";
-                            Log.d("haha", "MapProjectActivity" + title);
-                        } else if (counter == 3) {
-                            //6
-
-                            title = "鄂C 9C219";
-                            Log.d("haha", "MapProjectActivity" + title);
-                            counter = 0;
+                            addDeviceMarkerToMap(resultLatLng, titleString[i]);
                         }
+                        Log.d("haha", "非空" + "g0 :" + GPSString[1] + " " + GPSString[2]);
+                        Log.d("haha", "非空" + "g0 :" + titleString[1] + " " + titleString[2]);
 
-                        addDeviceMarkerToMap(resultLatLng, title);
 
-
-                        CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(resultLatLng, 16, 30, 0));
-                        aMap.moveCamera(mCameraUpdate);
+             /*       String[] datas =
+                    for(int i = 1; i < IdString.length; i++) {//解析后数组中IdString[0]为空的
+                        Log.d("haha", "fasong: " + IdString[i] + "  " + DvString[i]);
+*/
+/*
+   在此处添加发送命令，实现
+   NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd>" +
+                                "<field>GPSInformation</field><type>DDI</type><querymode>findLatest</querymode><p0>" + IdString[i] +
+                                "</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 1000);//4526*/
                     }
+
                 }
-
-
             }
         });
+
+        queryProject();
     }
+
+
+
 
     @Override
     public void onClick(View v){
 
         Intent intent = new Intent();
         switch (v.getId()){
+            case R.id.search_tv:
+                intent.setClass(MapProjectActivity.this, AddressSelect.class);
+                startActivity(intent);
+                break;
+
             case R.id.jdselector:
                 BottomDialog dialog = new BottomDialog(MapProjectActivity.this);
                 dialog.setOnAddressSelectedListener(MapProjectActivity.this);
@@ -153,16 +178,19 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
                 Log.d("haha", "home_page_1 click!");
                 intent.setClass(MapProjectActivity.this, MapDeviceActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.home_page_2:
                 intent.setClass(MapProjectActivity.this, DeviceMaintainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.home_page_3:
                 intent.setClass(MapProjectActivity.this, AccountManageActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
 
@@ -208,43 +236,11 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
 
     }
 
-    public void queryDevice(String province){
-        if(province.equals("江苏")){
-            Log.d("haha", "开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>4</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);//4526
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>5</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
+    public void queryProject(){
+        NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
+                "<type>PDI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>null</p3>" +
+                "<p4>null</p4><p5>null</p5></query>", 0);
 
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>6</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
-        }else if(province.equals("山东")){
-            Log.d("haha", "山东开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>PDI</type>" +
-                    "<querymode>findByProjectProvince</querymode><p0>empty</p0><p1>安徽</p1><p2>empty</p2><p3>null</p3><p4>null</p4><p5>null</p5></query>", 0);
-        }else if(province.equals("内蒙古")){
-            Log.d("haha", "开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DSI</type>" +
-                    "<querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>太湖隧道项目</p3><p4>empty</p4><p5>empty</p5></query>", 0);
-        }else if(province.equals("黑龙江")){
-            Log.d("haha", "heilong开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>4</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
-        }else if(province.equals("吉林")){
-            Log.d("haha", "jilin开始查询");
-            //查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field><type>DDI</type>" +
-                    "<querymode>findLatest</querymode><p0>4</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
-        }else if(province.equals("辽宁")){
-        Log.d("haha", "liaoning开始查询");
-        //查询项目部信息
-        NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DDI</type>" +
-                "<querymode>findByDate</querymode><p0>empty</p0><p1>2018-7-7</p1><p2>2018-7-7</p2><p3>empty</p3><p4>empty</p4><p5>null</p5></query>", 0);
-    }
     }
 
     //maker的点击事件
@@ -260,6 +256,7 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
         }*/
         Log.d("haha", "点击Marker");
         marker.showInfoWindow();
+
 
         markerflag = true;
         return true; //返回 “false”，除定义的操作之外，默认操作也将会被执行
@@ -316,6 +313,8 @@ public class MapProjectActivity extends AppCompatActivity implements AMap.OnMapC
     private void initView() {
         mapView = (MapView) findViewById(R.id.home_page_mapview_0);//地图
 
+        msearch_tv = (TextView)findViewById(R.id.search_tv);
+        msearch_tv.setOnClickListener(this);
         jdSelect = (LinearLayout)findViewById(R.id.jdselector);//唤醒popupWindow的按键
         jdSelect.setOnClickListener(this);
 

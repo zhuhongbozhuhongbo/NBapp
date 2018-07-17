@@ -15,16 +15,14 @@
         android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="377dc956e92e211cb293a4b2ce09fccc" />
+            android:value="e36616c56ee291bd99db7b49f579ef7a" />
 
         <activity
             android:name="com.example.map3dtest.login.LoginActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait"></activity>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.map3dtest.main.MapProjectActivity"
-            android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,21 +32,15 @@
         </activity>
         <activity
             android:name="com.example.map3dtest.main.MapDeviceActivity"
-            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.map3dtest.main.DeviceMaintainActivity"
-            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.map3dtest.main.AccountManageActivity"
-            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.map3dtest.MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.example.map3dtest.main.SmoothMoveActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.map3dtest.tables.LocationSelectActivity"
@@ -81,16 +73,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.map3dtest.tables.ProjectSheetActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="com.example.nbiot_5.ACTION_START" />
-
-                <category android:name="com.example.nbiot_5.PROJECT_CATEGORY" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="com.example.map3dtest.charts.ChartActivitySec"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -100,10 +82,38 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.map3dtest.functest.FuncActivitySec">
+        <activity
+            android:name="com.example.map3dtest.main.SmoothMoveActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.example.nbiot_5.ACTION_START" />
 
+                <category android:name="com.example.nbiot_5.DEVICE_TRACK_CATEGORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
-        <activity android:name="com.example.map3dtest.functest.FuncActivityTrd">
+        <activity
+            android:name="com.example.map3dtest.tables.ProjectSheetActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.example.nbiot_5.ACTION_START" />
+
+                <category android:name="com.example.nbiot_5.PROJECT_CATEGORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.map3dtest.tables.ProjectDetailActivity">
+            <intent-filter>
+                <action android:name="com.example.nbiot_5.ACTION_START" />
+
+                <category android:name="com.example.nbiot_5.PROJECT_DETAIL_CATEGORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.map3dtest.functest.FuncActivitySec" />
+        <activity android:name="com.example.map3dtest.functest.FuncActivityTrd" />
+        <activity android:name="com.example.map3dtest.search.ProDevSelectActivity"></activity>
+        <activity android:name="com.example.map3dtest.search.AddressSelect">
 
         </activity>
     </application>

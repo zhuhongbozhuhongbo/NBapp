@@ -67,9 +67,13 @@ public class FuncActivityTrd extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v){
         if(v.getId() == R.id.func_btn_trd){
+  /*          NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
+                    "<type>PDI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3>" +
+                    "<p4>empty</p4><p5>empty</p5></query>", 0);*/
+
             NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
-                    "<type>DSI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3>" +
-                    "<p4>empty</p4><p5>empty</p5></query>", 0);
+                    "<type>PDI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>null</p3>" +
+                    "<p4>null</p4><p5>null</p5></query>", 0);
             Log.d("haha", "functesttrd");
         }
 
