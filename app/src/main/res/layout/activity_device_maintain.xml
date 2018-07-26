@@ -42,32 +42,76 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             >
-            <ImageView
+            <LinearLayout
                 android:id="@+id/device_home_page_0"
-                android:src="@drawable/tab_home"
-                android:layout_width="35dp"
-                android:layout_height="21dp"/>
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/tab_home"
+                    android:layout_width="35dp"
+                    android:layout_height="21dp"/>
 
-            <ImageView
+                <TextView
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:gravity="center"
+                    android:text="项目管理"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/device_home_page_1"
-                android:src="@drawable/tab_news"
-                android:layout_width="35dp"
-                android:layout_height="21dp"/>
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/tab_news"
+                    android:layout_width="35dp"
+                    android:layout_height="21dp"/>
 
-            <ImageView
+                <TextView
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:gravity="center"
+                    android:text="设备管理"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/device_home_page_2"
-                android:src="@drawable/tab_maintain"
-                android:layout_width="35dp"
-                android:layout_height="21dp"/>
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/tab_maintain"
+                    android:layout_width="35dp"
+                    android:layout_height="21dp"/>
 
-            <ImageView
+                <TextView
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:gravity="center"
+                    android:text="设备维护"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/device_home_page_3"
-                android:src="@drawable/tab_account"
-                android:layout_width="35dp"
-                android:layout_height="21dp"/>
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/tab_account"
+                    android:layout_width="35dp"
+                    android:layout_height="21dp"/>
+
+                <TextView
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:gravity="center"
+                    android:text="我的账户"/>
+            </LinearLayout>
         </TableRow>
 
-        <TableRow
+    <!--    <TableRow
             android:layout_marginTop="5dp"
             android:layout_marginBottom="4dp"
             android:gravity="center_vertical"
@@ -98,7 +142,7 @@
                 android:gravity="center"
                 android:text="我的账户"/>
 
-        </TableRow>
+        </TableRow>-->
 
     </TableLayout>
 </RelativeLayout>

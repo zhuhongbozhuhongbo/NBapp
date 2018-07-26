@@ -67,10 +67,10 @@ public class MapDeviceActivity extends BaseActivity implements AMap.OnMapClickLi
     private LinearLayout jdSelect;
 
     private int counter = 0;
-    private ImageView Ighome_page_0;
-    private ImageView Ighome_page_1;
-    private ImageView Ighome_page_2;
-    private ImageView Ighome_page_3;
+    private LinearLayout Ighome_page_0;
+    private LinearLayout Ighome_page_1;
+    private LinearLayout Ighome_page_2;
+    private LinearLayout Ighome_page_3;
     private TextView msearch_tv;
 
     String[] IdString = {};
@@ -345,10 +345,10 @@ public class MapDeviceActivity extends BaseActivity implements AMap.OnMapClickLi
         msearch_tv.setOnClickListener(this);
 
 
-        Ighome_page_0 = (ImageView)findViewById(R.id.home_page_device_0);
-        Ighome_page_1 = (ImageView)findViewById(R.id.home_page_device_1);
-        Ighome_page_2 = (ImageView)findViewById(R.id.home_page_device_2);
-        Ighome_page_3 = (ImageView)findViewById(R.id.home_page_device_3);
+        Ighome_page_0 = (LinearLayout)findViewById(R.id.home_page_device_0);
+        Ighome_page_1 = (LinearLayout)findViewById(R.id.home_page_device_1);
+        Ighome_page_2 = (LinearLayout)findViewById(R.id.home_page_device_2);
+        Ighome_page_3 = (LinearLayout)findViewById(R.id.home_page_device_3);
 
         Ighome_page_0.setOnClickListener(this);
         Ighome_page_1.setOnClickListener(this);

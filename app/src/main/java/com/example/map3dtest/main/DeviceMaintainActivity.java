@@ -20,10 +20,10 @@ import chihane.jdaddressselector.BottomDialog;
 import mlxy.utils.Dev;
 
 public class DeviceMaintainActivity extends BaseActivity implements View.OnClickListener{
-    private ImageView Ighome_page_0;
-    private ImageView Ighome_page_1;
-    private ImageView Ighome_page_2;
-    private ImageView Ighome_page_3;
+    private LinearLayout Ighome_page_0;
+    private LinearLayout Ighome_page_1;
+    private LinearLayout Ighome_page_2;
+    private LinearLayout Ighome_page_3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +33,10 @@ public class DeviceMaintainActivity extends BaseActivity implements View.OnClick
 
     private void initView() {
 
-        Ighome_page_0 = (ImageView)findViewById(R.id.device_home_page_0);
-        Ighome_page_1 = (ImageView)findViewById(R.id.device_home_page_1);
-        Ighome_page_2 = (ImageView)findViewById(R.id.device_home_page_2);
-        Ighome_page_3 = (ImageView)findViewById(R.id.device_home_page_3);
+        Ighome_page_0 = (LinearLayout)findViewById(R.id.device_home_page_0);
+        Ighome_page_1 = (LinearLayout)findViewById(R.id.device_home_page_1);
+        Ighome_page_2 = (LinearLayout)findViewById(R.id.device_home_page_2);
+        Ighome_page_3 = (LinearLayout)findViewById(R.id.device_home_page_3);
 
         Ighome_page_0.setOnClickListener(this);
         Ighome_page_1.setOnClickListener(this);

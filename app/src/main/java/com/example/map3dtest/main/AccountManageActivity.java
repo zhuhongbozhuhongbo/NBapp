@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.map3dtest.activitycollector.ActivityCollector;
 import com.example.map3dtest.activitycollector.BaseActivity;
@@ -18,10 +19,10 @@ import com.example.nbapp.R;
 import mlxy.utils.Dev;
 
 public class AccountManageActivity extends BaseActivity implements View.OnClickListener{
-    private ImageView Ighome_page_0;
-    private ImageView Ighome_page_1;
-    private ImageView Ighome_page_2;
-    private ImageView Ighome_page_3;
+    private LinearLayout Ighome_page_0;
+    private LinearLayout Ighome_page_1;
+    private LinearLayout Ighome_page_2;
+    private LinearLayout Ighome_page_3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +33,10 @@ public class AccountManageActivity extends BaseActivity implements View.OnClickL
 
     private void initView() {
 
-        Ighome_page_0 = (ImageView)findViewById(R.id.account_home_page_0);
-        Ighome_page_1 = (ImageView)findViewById(R.id.account_home_page_1);
-        Ighome_page_2 = (ImageView)findViewById(R.id.account_home_page_2);
-        Ighome_page_3 = (ImageView)findViewById(R.id.account_home_page_3);
+        Ighome_page_0 = (LinearLayout)findViewById(R.id.account_home_page_0);
+        Ighome_page_1 = (LinearLayout)findViewById(R.id.account_home_page_1);
+        Ighome_page_2 = (LinearLayout)findViewById(R.id.account_home_page_2);
+        Ighome_page_3 = (LinearLayout)findViewById(R.id.account_home_page_3);
 
         Ighome_page_0.setOnClickListener(this);
         Ighome_page_1.setOnClickListener(this);

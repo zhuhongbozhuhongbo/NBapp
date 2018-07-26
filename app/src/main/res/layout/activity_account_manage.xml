@@ -40,71 +40,79 @@
         android:orientation="horizontal"
         android:stretchColumns="*">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp">
 
-            <ImageView
-                android:id="@+id/account_home_page_0"
-                android:layout_width="35dp"
-                android:layout_height="21dp"
-                android:src="@drawable/tab_home" />
-
-            <ImageView
-                android:id="@+id/account_home_page_1"
-                android:layout_width="35dp"
-                android:layout_height="21dp"
-                android:src="@drawable/tab_news" />
-
-            <ImageView
-                android:id="@+id/account_home_page_2"
-                android:layout_width="35dp"
-                android:layout_height="21dp"
-                android:src="@drawable/tab_maintain" />
-
-            <ImageView
-                android:id="@+id/account_home_page_3"
-                android:layout_width="35dp"
-                android:layout_height="21dp"
-                android:src="@drawable/tab_account" />
-        </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginBottom="4dp"
             android:layout_marginTop="5dp"
-            android:gravity="center_vertical">
+            android:layout_width="match_parent"
+            >
+            <LinearLayout
+                android:id="@+id/account_home_page_0"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/tab_home"
+                    android:layout_width="35dp"
+                    android:layout_height="21dp"/>
 
-            <TextView
-                android:layout_width="35dp"
-                android:layout_height="14dp"
-                android:gravity="center"
-                android:text="项目管理"
-                android:textSize="10dp" />
+                <TextView
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:gravity="center"
+                    android:text="项目管理"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="35dp"
-                android:layout_height="14dp"
-                android:gravity="center"
-                android:text="设备管理"
-                android:textSize="10dp" />
+            <LinearLayout
+                android:id="@+id/account_home_page_1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/tab_news"
+                    android:layout_width="35dp"
+                    android:layout_height="21dp"/>
 
-            <TextView
-                android:layout_width="35dp"
-                android:layout_height="14dp"
-                android:gravity="center"
-                android:text="设备维护"
-                android:textSize="10dp" />
+                <TextView
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:gravity="center"
+                    android:text="设备管理"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="35dp"
-                android:layout_height="14dp"
-                android:gravity="center"
-                android:text="我的账户"
-                android:textSize="10dp" />
+            <LinearLayout
+                android:id="@+id/account_home_page_2"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/tab_maintain"
+                    android:layout_width="35dp"
+                    android:layout_height="21dp"/>
 
+                <TextView
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:gravity="center"
+                    android:text="设备维护"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/account_home_page_3"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/tab_account"
+                    android:layout_width="35dp"
+                    android:layout_height="21dp"/>
+
+                <TextView
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:gravity="center"
+                    android:text="我的账户"/>
+            </LinearLayout>
         </TableRow>
-
     </TableLayout>
 </RelativeLayout>

@@ -66,10 +66,10 @@ public class MapProjectActivity extends BaseActivity implements AMap.OnMapClickL
     private LinearLayout jdSelect;
 
     private int counter = 0;
-    private ImageView Ighome_page_0;
-    private ImageView Ighome_page_1;
-    private ImageView Ighome_page_2;
-    private ImageView Ighome_page_3;
+    private LinearLayout Ighome_page_0;
+    private LinearLayout Ighome_page_1;
+    private LinearLayout Ighome_page_2;
+    private LinearLayout Ighome_page_3;
     private TextView msearch_tv;
     private int markerCounter = 0;
 
@@ -338,10 +338,10 @@ public class MapProjectActivity extends BaseActivity implements AMap.OnMapClickL
         jdSelect = (LinearLayout)findViewById(R.id.jdselector);//唤醒popupWindow的按键
         jdSelect.setOnClickListener(this);
 
-        Ighome_page_0 = (ImageView)findViewById(R.id.home_page_0);
-        Ighome_page_1 = (ImageView)findViewById(R.id.home_page_1);
-        Ighome_page_2 = (ImageView)findViewById(R.id.home_page_2);
-        Ighome_page_3 = (ImageView)findViewById(R.id.home_page_3);
+        Ighome_page_0 = (LinearLayout)findViewById(R.id.home_page_0);
+        Ighome_page_1 = (LinearLayout)findViewById(R.id.home_page_1);
+        Ighome_page_2 = (LinearLayout)findViewById(R.id.home_page_2);
+        Ighome_page_3 = (LinearLayout)findViewById(R.id.home_page_3);
 
         Ighome_page_0.setOnClickListener(this);
         Ighome_page_1.setOnClickListener(this);
