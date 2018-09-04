@@ -21,31 +21,34 @@
             android:name="com.example.map3dtest.login.LoginActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" >
+
+        </activity>
+
+        <activity
+            android:name="com.example.map3dtest.main.MapProjectActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.map3dtest.main.MapProjectActivity"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.example.map3dtest.main.MapDeviceActivity"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
 
         <activity
             android:name="com.example.map3dtest.main.DeviceMaintainActivity"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
 
         <activity
             android:name="com.example.map3dtest.main.AccountManageActivity"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
 
         <activity
             android:name="com.example.map3dtest.MainActivity"
@@ -120,7 +123,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.map3dtest.functest.FuncActivitySec" />
+        <activity android:name="com.example.map3dtest.functest.FuncActivitySec" >
+
+        </activity>
         <activity android:name="com.example.map3dtest.functest.FuncActivityTrd" />
         <activity android:name="com.example.map3dtest.search.ProDevSelectActivity"></activity>
         <activity android:name="com.example.map3dtest.search.AddressSelect">

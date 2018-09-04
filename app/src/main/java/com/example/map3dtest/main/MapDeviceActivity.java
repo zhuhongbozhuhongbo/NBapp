@@ -82,7 +82,7 @@ public class MapDeviceActivity extends BaseActivity implements AMap.OnMapClickLi
 
     private Handler mHandler = new Handler();
 
-/*  这段代码与launchMode="singleTask"配合使用，参见：  https://blog.csdn.net/findsafety/article/details/9664061
+  //这段代码与launchMode="singleTask"配合使用，参见：  https://blog.csdn.net/findsafety/article/details/9664061
   @Override
     protected void onNewIntent(Intent intent) {
 
@@ -97,7 +97,7 @@ public class MapDeviceActivity extends BaseActivity implements AMap.OnMapClickLi
     private void processExtraData(){
         Intent intent = getIntent();
         //use the data received here
-    }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,9 +165,9 @@ public class MapDeviceActivity extends BaseActivity implements AMap.OnMapClickLi
 
                         markerCounter++;
                         //Toast.makeText(getApplicationContext(), "获取到第" + markerCounter + "个新数据！" , Toast.LENGTH_SHORT).show()
-                        CustomToast.showToast(MapDeviceActivity.this,  "获取到第" + markerCounter + "个新数据！", 400);
-                        //切换地图显示区域
-                        CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(resultLatLng,17,30,0));
+                        //CustomToast.showToast(MapDeviceActivity.this,  "获取到第" + markerCounter + "个新数据！", 400);
+                        //切换地图显示区域 zoom(第二個參數)值越大地圖顯示的區域面積越小
+                        CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(resultLatLng,13,30,0));
                         aMap.moveCamera(mCameraUpdate);
 
                         addDeviceMarkerToMap(resultLatLng, getTitle(body.getId()));

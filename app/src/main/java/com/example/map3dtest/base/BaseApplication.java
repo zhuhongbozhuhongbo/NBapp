@@ -20,8 +20,8 @@ public class BaseApplication extends Application {
         context = getApplicationContext();
         Log.d("haha", "application");
         //NettyClient.getInstance().connect("10.10.10.132", 8080);//连接到服务器
-        NettyClient.getInstance().connect("120.79.24.19", 8080);//连接到服务器
-        //NettyClient.getInstance().connect("192.168.1.100", 8080);//连接到服务器
+        NettyClient.getInstance().connect("120.79.24.19", 8085);//连接到服务器
+        //NettyClient.getInstance().connect("192.168.43.90", 8085);//连接到服务器
     }
 
     public static Context getContext() {

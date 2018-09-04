@@ -132,7 +132,7 @@ public class InfoWinAdapter implements AMap.InfoWindowAdapter, View.OnClickListe
             TransformData transSec = new TransformData(agentName);
             dataSec.putParcelable("prjName", transSec);
             intentSec.putExtras(dataSec);
-            intentSec.addCategory("com.example.nbiot_5.PROJECT_DETAIL_CATEGORY");
+            intentSec.addCategory("com.example.nbiot_5.PROJECT_DETAIL_CATEGORY");//ProjectDetailActivity
             intentSec.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intentSec);
         } else if(id == R.id.project_window_button1){
@@ -143,7 +143,7 @@ public class InfoWinAdapter implements AMap.InfoWindowAdapter, View.OnClickListe
             transTrd.setProvinceOrName(false);
             dataSec.putParcelable("prjName", transTrd);
             intentSec.putExtras(dataSec);//跳转到项目的设备列表页面
-            intentSec.addCategory("com.example.nbiot_5.PROJECT_CATEGORY");
+            intentSec.addCategory("com.example.nbiot_5.PROJECT_CATEGORY");//ProjectSheetActivity
             intentSec.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intentSec);
         }

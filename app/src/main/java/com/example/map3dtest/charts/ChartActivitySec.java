@@ -313,7 +313,7 @@ public class ChartActivitySec extends AppCompatActivity implements View.OnClickL
                         "<querymode>findByIdAndHour</querymode><p0>" + queryID + "</p0><p1>" + dateText + "</p1><p2>empty</p2><p3>00:00:00</p3><p4>23:59:59</p4><p5>" +
                         "null</p5></query>");*/
                 NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>angleZ</field><type>DDI</type>" +
-                        "<querymode>findByIdAndHour</querymode><p0>" + queryID + "</p0><p1>" + dateText + "</p1><p2>empty</p2><p3>00:00:00</p3><p4>23:59:59</p4><p5>null</p5></query>", 0);
+                        "<querymode>findByIdAndHour</querymode><p0>" + queryID + "</p0><p1>" + dateText + "</p1><p2>empty</p2><p3>00:00:00</p3><p4>00:02:59</p4><p5>null</p5></query>", 0);
                 NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>zAcceleration</field><type>DDI</type>" +
                         "<querymode>findByIdAndHour</querymode><p0>" + queryID + "</p0><p1>" + dateText + "</p1><p2>empty</p2><p3>00:00:00</p3><p4>23:59:59</p4><p5>null</p5></query>", 0);
                 NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>currentSpeed</field><type>DDI</type>" +

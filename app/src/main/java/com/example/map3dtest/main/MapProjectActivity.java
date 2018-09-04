@@ -75,11 +75,11 @@ public class MapProjectActivity extends BaseActivity implements AMap.OnMapClickL
 
     private Handler mHandler = new Handler();
 
-/*    @Override
+    @Override
     protected void onNewIntent(Intent intent) {
 
         super.onNewIntent(intent);
-        setIntent(intent);//must store the new intent unless getIntent() will return the old one
+        setIntent(intent);//must store the new intent otherwise getIntent() will return the old one
         processExtraData();
         GlobalStateManager.projectdevice = true;
         clearMarkers();
@@ -89,7 +89,7 @@ public class MapProjectActivity extends BaseActivity implements AMap.OnMapClickL
     private void processExtraData(){
         Intent intent = getIntent();
         //use the data received here
-    }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class MapProjectActivity extends BaseActivity implements AMap.OnMapClickL
 
         initView();
         initMap();
-        /*NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
+        /*NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>allF</field>" +
                 "<type>PDI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>null</p3>" +
                 "<p4>null</p4><p5>null</p5></query>", 0);*/
 
@@ -115,7 +115,7 @@ public class MapProjectActivity extends BaseActivity implements AMap.OnMapClickL
 
                     String[] titleString = body.getP1().trim().split("#");
                     String[] GPSString = body.getP10().trim().split("#");
-                    //Log.d("haha", "内容: " + LatLngString[0] + " a" + LatLngString[1] + "size: " + LatLngString.length);
+                    //Log.d("haha", "内容: " + LatLngString[0] + " Fa" + LatLngString[1] + "size: " + LatLngString.length);
                     Log.d("haha", "size: " + titleString.length);
                     if (GPSString.length == 0) {
 
@@ -137,11 +137,11 @@ public class MapProjectActivity extends BaseActivity implements AMap.OnMapClickL
 
                             markerCounter++;
                             //Toast.makeText(getApplicationContext(), "获取到第" + markerCounter + "个新数据！" , Toast.LENGTH_SHORT).show()
-                            CustomToast.showToast(MapProjectActivity.this,  "获取到第" + markerCounter + "个新数据！", 400);
+                            //CustomToast.showToast(MapProjectActivity.this,  "获取到第" + markerCounter + "个新数据！", 400);
                             addDeviceMarkerToMap(resultLatLng, titleString[i]);
                         }
-                        Log.d("haha", "非空" + "g0 :" + GPSString[1] + " " + GPSString[2]);
-                        Log.d("haha", "非空" + "g0 :" + titleString[1] + " " + titleString[2]);
+                    /*    Log.d("haha", "非空" + "g0 :" + GPSString[1] + " " + GPSString[2]);
+                        Log.d("haha", "非空" + "g0 :" + titleString[1] + " " + titleString[2]);*/
 
 
              /*       String[] datas =

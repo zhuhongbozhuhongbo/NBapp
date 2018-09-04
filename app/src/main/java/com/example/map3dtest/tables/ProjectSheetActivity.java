@@ -134,14 +134,19 @@ public class ProjectSheetActivity extends AppCompatActivity implements View.OnCl
         TransformData trans = getQueryPrjName();
 
         if (trans.isProvinceOrName()){//true代表参数为province
+
             //按省份查询项目部信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>PDI</type>" +
-                    "<querymode>findByProjectProvince</querymode><p0>empty</p0><p1>" + trans.getPrjName() + "</p1><p2>empty</p2><p3>null</p3><p4>null</p4><p5>null</p5></query>", 0);
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd>" +
+                    "<field>all</field><type>PDI</type><querymode>findByProjectProvince</querymode><p0>empty</p0><p1>" +
+                    trans.getPrjName() + "</p1><p2>empty</p2><p3>null</p3><p4>null</p4><p5>null</p5></query>", 0);
             Log.d("haha", "queryPDI 省|" + trans.getPrjName());
+
         }else{
+
             //按项目名称查询项目部设备信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DSI</type>" +
-                    "<querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>" + trans.getPrjName() + "</p3><p4>empty</p4><p5>empty</p5></query>", 0);
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd>" +
+                    "<field>all</field><type>DSI</type><querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty" +
+                    "</p1><p2>empty</p2><p3>" + trans.getPrjName() + "</p3><p4>empty</p4><p5>empty</p5></query>", 0);
             Log.d("haha", "queryPDI 项目名|" + trans.getPrjName());
   /*          NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>numberPlate</field><type>DSI</type>" +
                     "<querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>" + queryPrjName + "</p3><p4>empty</p4><p5>empty</p5></query>", 0);*/

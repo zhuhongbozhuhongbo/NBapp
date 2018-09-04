@@ -48,6 +48,11 @@ public class FuncActivitySec extends AppCompatActivity implements View.OnClickLi
     private Button mbtn2;
     private Button mbtn3;
     private Button mbtn4;
+    private Button mbtn5;
+    private Button mbtn6;
+    private Button mbtn7;
+    private Button mbtn8;
+    private Button mbtn9;
     private TextView mtv0;
     private ArrayList<Entry> values;
     private LineChart mTestChart;
@@ -87,6 +92,8 @@ public class FuncActivitySec extends AppCompatActivity implements View.OnClickLi
                         + " p4:" + body.getP4() + " " + " p5:" + body.getP5() + " " + " p6:" + body.getP6() + " " + " p7:" + body.getP7() + " " + " p8:" + body.getP8() + " "
                         + " p9:" + body.getP9() + " " + " p10:" + body.getP10() + " p0:" + body.getP0() + " " + " p1:" + body.getP1();
                 Log.d("haha", "FuncActivity收到:" + result);
+
+                mtv0.setText(result);
                 if(body.getType().equals("DDI")){
 
                 }else if(body.getType().equals("DSI")){
@@ -121,6 +128,11 @@ public class FuncActivitySec extends AppCompatActivity implements View.OnClickLi
         mbtn2 = findViewById(R.id.button2);
         mbtn3 = findViewById(R.id.button3);
         mbtn4 = findViewById(R.id.button4);
+        mbtn5 = findViewById(R.id.button5);
+        mbtn6 = findViewById(R.id.button6);
+        mbtn7 = findViewById(R.id.button7);
+        mbtn8 = findViewById(R.id.button8);
+        mbtn9 = findViewById(R.id.button9);
         mtv0 = findViewById(R.id.tv0);
         mTestChart = findViewById(R.id.testChart);
         mid_select = findViewById(R.id.testIdSelect);
@@ -134,6 +146,11 @@ public class FuncActivitySec extends AppCompatActivity implements View.OnClickLi
         mbtn2.setOnClickListener(this);
         mbtn3.setOnClickListener(this);
         mbtn4.setOnClickListener(this);
+        mbtn5.setOnClickListener(this);
+        mbtn6.setOnClickListener(this);
+        mbtn7.setOnClickListener(this);
+        mbtn8.setOnClickListener(this);
+        mbtn9.setOnClickListener(this);
         mid_select.setOnClickListener(this);
 
         //mid_select.setInputType(EditorInfo.TYPE_CLASS_PHONE);
@@ -176,47 +193,71 @@ public class FuncActivitySec extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v){
         if(v.getId() == R.id.button0){
 
-            //设备动态信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>GPSInformation</field>" +
-                    "<type>DDI</type><querymode>findByIdAndHour</querymode><p0>" + Id + "</p0><p1>" + dateText + "</p1><p2>empty</p2><p3>00:00:00</p3><p4>" +
-                    "23:59:59</p4><p5>null</p5></query>", 0);
-            Log.d("haha", "xm");
+            //设备动态信息 param：String iotDeviceId设备id <p0></p0>
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
+                    "<type>DDI</type><querymode>findLatest</querymode><p0>" + Id + "</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty" +
+                    "</p4><p5>null</p5></query>", 0);
+
         }else if(v.getId() == R.id.button1){
-            //设备静态信息
-           /* NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DSI</type>" +
-                    "<querymode>findByIotDeviceId</querymode><p0>empty</p0><p1>6</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>empty</p5></query>", 0);
-            Log.d("haha", "jt");*/
 
-           /* 查询所有设备
-           NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DSI</type>" +
-                    "<querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>empty</p5></query>", 0);
-            Log.d("haha", "jt");*/
-
-           /*按项目查询设备所有信息
-           NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>DSI</type>" +
-                    "<querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>太湖隧道项目</p3><p4>empty</p4><p5>empty</p5></query>", 0);
-            Log.d("haha", "jt");*/
-
+            //所有设备的静态信息
             NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
                     "<type>DSI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3>" +
                     "<p4>empty</p4><p5>empty</p5></query>", 0);
-            Log.d("haha", "jt");
+
         }else if(v.getId() == R.id.button2){
-            //项目部
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>PDI</type>" +
-                    "<querymode>findByProjectProvince</querymode><p0>安徽省</p0><p1>empty</p1><p2>empty</p2><p3>null</p3><p4>null</p4><p5>null</p5></query>", 0);
-            Log.d("haha", "t");
+
+            //项目部 按照省份搜索项目部信息
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field>" +
+                    "<type>PDI</type><querymode>findByProjectProvince</querymode><p0>安徽省</p0><p1>empty</p1><p2>empty</p2><p3>null</p3><p4>" +
+                    "null</p4><p5>null</p5></query>", 0);
 
         }else if(v.getId() == R.id.button3){
-            //统计信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE,"<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>SI</type><querymode>findById" +
-                    "</querymode><p0>" + Id + "</p0><p1>empty</p1><p2> null</p2><p3> null</p3><p4> null</p4><p5> null</p5></query>", 0);
-            Log.d("haha", "tj");
+
+            //统计信息 按照Id查询某设备统计信息
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE,"<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>" +
+                    "SI</type><querymode>findById</querymode><p0>" + Id + "</p0><p1>empty</p1><p2> null</p2><p3> null</p3><p4> null</p4><p5> null" +
+                    "</p5></query>", 0);
+
         }else if(v.getId() == R.id.button4){
-            //用户信息
-            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>User</type><querymode>findAll" +
+
+            //用户信息 查询所有用户的用户信息
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>" +
+                    "User</type><querymode>findAll" +
                     "</querymode><p0>null</p0><p1>null</p1><p2>null</p2><p3>null</p3><p4>null</p4><p5>null</p5></query>", 0);
-            Log.d("haha", "yh");
+
+        }else if(v.getId() == R.id.button5){
+
+            //按照Id查询某设备静态信息
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>" +
+                    "DSI</type><querymode>findByIotDeviceId</querymode><p0>empty</p0><p1>6</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>empty" +
+                    "</p5></query>", 0);
+
+        }else if(v.getId() == R.id.button6){
+
+            //查询所有设备
+           NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>" +
+                   "DSI</type><querymode>findAll</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>empty</p3><p4>empty</p4><p5>empty</p5>" +
+                   "</query>", 0);
+
+
+        }else if(v.getId() == R.id.button7){
+
+            //按项目名称查询该项目所有设备的dsi信息
+           NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>" +
+                   "DSI</type><querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>太湖隧道项目</p3><p4>" +
+                   "empty</p4><p5>empty</p5></query>", 0);
+
+        }else if(v.getId() == R.id.button8){
+
+            //按项目名称查询该项目所有设备的dsi信息
+            NettyClient.getInstance().sendMessage(Constant.MSG_TYPE, "<query><userid>001</userid><passwd>aaa</passwd><field>all</field><type>" +
+                    "DSI</type><querymode>findByProjectInformation</querymode><p0>empty</p0><p1>empty</p1><p2>empty</p2><p3>杭绍台项目</p3><p4>" +
+                    "empty</p4><p5>empty</p5></query>", 0);
+
+
+        }else if(v.getId() == R.id.button9){
+
         }
     }
 
